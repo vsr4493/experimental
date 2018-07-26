@@ -16,11 +16,11 @@ class WrappedForm extends React.Component {
       ],
       "properties": {
         "location_id": {
-          "type": "string",
+          "type": "integer",
           "title": "Location"
         },
         "quantity": {
-          "type": "string",
+          "type": "integer",
           "title": "Quantity"
         },
         "cost_price": {
@@ -41,29 +41,24 @@ class WrappedForm extends React.Component {
       "selling_price": "45.08",
     };
 
-    // const uiSchema = {
-    //   "location_id": {
-    //     "ui:autofocus": true,
-    //     "ui:emptyValue": ""
-    //   },
-    //   "quantity": {
-    //     "ui:widget": "updown",
-    //     "ui:title": "Age of person",
-    //     "ui:description": "(earthian year)"
-    //   },
-    //   "cost_price": {
-    //     "ui:widget": "textarea"
-    //   },
-    //   "selling_price": {
-    //     "ui:widget": "textarea",
-    //     "ui:help": "Hint: Make it strong!"
-    //   }
-    // };
+    const uiSchema = {
+      "location_id": {
+      },
+      "quantity": {
+        "ui:title": "Quantity"
+      },
+      "cost_price": {
+        "ui:title": "Cost Price"
+      },
+      "selling_price": {
+        "ui:title": "Selling Price"
+      }
+    };
     return (
       <Form
         formData={formData}
         schema={schema}
-        // uiSchema={uiSchema}
+        uiSchema={uiSchema}
       />
     )
   }
