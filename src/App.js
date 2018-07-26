@@ -1,11 +1,10 @@
 import React from 'react';
 import Route from 'react-router-dom/Route';
+import Redirect from 'react-router-dom/Redirect';
 import Switch from 'react-router-dom/Switch';
 import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
-
-import Home from './Home';
 // Pages
 import Admin from './client/pages/Admin';
 
@@ -19,7 +18,7 @@ const App = () => (
 	<JssProvider jss={jss} generateClassName={generateClassName}>
 		<Switch>
 		  <Route path="/administration" component={Admin} />
-			<Route path="/" component={Home} />
+			<Redirect to="/administration" />
 		</Switch>
 	</JssProvider>
 );
