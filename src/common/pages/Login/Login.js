@@ -63,8 +63,7 @@ class Login extends React.Component {
 
   sendDetails(){
     // pass these two to a function for auth
-    this.state.emailValue
-    this.state.passwordValue
+    this.props.submitLogin(this.state.emailValue, this.state.passwordValue);
   }
 
   render(){
@@ -108,6 +107,7 @@ class Login extends React.Component {
                       <InputLabel htmlFor="password">Password</InputLabel>
                       <Input value={this.state.passwordValue} onChange={this.handlePasswordInput}
                         id="password"
+                        type="password"
                         startAdornment={
                           <InputAdornment position="start">
                             <VpnKey />

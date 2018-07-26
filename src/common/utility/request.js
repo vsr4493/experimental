@@ -53,3 +53,16 @@ export const updateItem = ({ updated, apiConfiguration }) => {
   payload.headers = {};
   return request(payload);
 };
+
+export const login = ({email, password}) => {
+  const payload = {
+    url: '/api/login',
+    method: 'post',
+    data: {
+      email,
+      password
+    }
+  }
+  payload.headers = {};
+  return request(payload);
+}

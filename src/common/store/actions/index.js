@@ -49,7 +49,7 @@ export const updateItem = payload => (dispatch, getState, { request }) => {
 			const responseItem = data.data;
 			dispatch(updateDataList({
 				data: Object.assign({}, dataList.data, {
-					[responseItem.id]: responseItem 
+					[responseItem.id]: responseItem
 				}),
 				isFetchComplete: true,
 			}));
@@ -59,4 +59,10 @@ export const updateItem = payload => (dispatch, getState, { request }) => {
 			console.log(err);
 		});
 };
+
+export const login = payload => (dispatch, getState, { request }) => {
+	return request
+		.login(payload)
+		.then(({data}) => data.is_success);
+}
 
