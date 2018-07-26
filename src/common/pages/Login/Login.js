@@ -65,7 +65,7 @@ class Login extends React.Component {
                 justify={justify}
               >
                 <Grid item>
-                  <FormControl className={classes.margin}>
+                  <FormControl fullWidth className={classes.margin}>
                     <InputLabel htmlFor="input-with-icon-adornment">Email Address</InputLabel>
                     <Input
                       id="input-with-icon-adornment"
