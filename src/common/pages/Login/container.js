@@ -16,7 +16,7 @@ const mapStateToProps = ({
 };
 
 const mapDispatchToProps = (dispatch, { history }) => ({
-  submitLogin(email, password) {
+  login(email, password) {
     return dispatch(Action.login({
       pageCategory,
       email,

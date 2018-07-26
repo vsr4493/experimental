@@ -63,6 +63,12 @@ class NavBar extends React.Component {
         "Reports 3" : "reports/reports-3",
         "Reports 4" : "reports/reports-4",
         "Reports 5" : "reports/reports-5"
+      },
+      "Profile": {
+        "Logout" : () => {
+          window.document.cookie = 'authToken=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          window.location = '/login';
+        }
       }
     };
 
@@ -77,6 +83,7 @@ class NavBar extends React.Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
+            <img src="/images/thanos.jpg" style={{ maxHeight: 50 }} />
             {itemList}
           </Toolbar>
         </AppBar>

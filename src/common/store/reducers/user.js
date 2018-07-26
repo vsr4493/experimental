@@ -10,7 +10,7 @@ const userReducer = (state = 0, action) => {
       return Object.assign({}, state, {
         isLoggedIn: action.payload.isLoggedIn,
       });
-    } 
+    }
     default:
       return state;
   }
