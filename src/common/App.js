@@ -4,7 +4,7 @@ import Redirect from 'react-router-dom/Redirect';
 import Switch from 'react-router-dom/Switch';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
-import Table from '../Components/Table'
+import Table from 'common/component/Table'
 import JssProvider from 'react-jss/lib/JssProvider';
 // Pages
 import Admin from 'pages/Admin';

@@ -19,7 +19,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedToolbar from './EnhancedToolbar';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import { dateFormatter } from '../../utility/formatters';
+import { dateFormatter } from 'common/utility/formatters';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
