@@ -6,7 +6,7 @@ import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 // Pages
-import Admin from './client/pages/Admin';
+import Admin from 'pages/Admin';
 
 
 const generateClassName = createGenerateClassName();
