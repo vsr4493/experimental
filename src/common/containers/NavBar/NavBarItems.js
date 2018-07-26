@@ -17,6 +17,7 @@ const styles = theme => ({
   paper: {
     zIndex: '1000'
   },
+
 });
 
 class NavBarItems extends React.Component {
@@ -43,9 +44,9 @@ class NavBarItems extends React.Component {
     const menuItems = Object.keys(data).map((k, i) => {
       return (
         <div key={i}>
-          <MenuItem onClick={this.handleToggle}>
-            <Link to={`/${data[k]}`}>{k}</Link>
-          </MenuItem>
+          <Link style={{ textDecoration: 'none' }} to={`/${data[k]}`}>
+            <MenuItem onClick={this.handleToggle}>{k}</MenuItem>
+          </Link>
         </div>
       )
     });
