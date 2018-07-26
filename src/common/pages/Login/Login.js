@@ -14,7 +14,7 @@ import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKey from '@material-ui/icons/VpnKey';
-import CheckCircle from "@material-ui/icons/Check";
+import Check from "@material-ui/icons/Check";
 
 const styles = theme => ({
   card: {
@@ -29,16 +29,43 @@ const styles = theme => ({
   },
   cover: {
     width: 300,
-    height: 230,
+    height: 275,
   }
 });
 
 class Login extends React.Component {
+  constructor(props){
+    super(props);
 
-  state = {
-    justify: 'center',
-    alignItems: 'center'
-  };
+    this.state = {
+      justify: 'center',
+      alignItems: 'center',
+      emailValue: '',
+      passwordValue: ''
+    };
+
+    this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.sendDetails = this.sendDetails.bind(this);
+  }
+
+  handleEmailInput = (e) => {
+    this.setState({
+      emailValue: e.target.value
+    });
+  }
+
+  handlePasswordInput = (e) => {
+    this.setState({
+      passwordValue: e.target.value
+    });
+  }
+
+  sendDetails(){
+    // pass these two to a function for auth
+    this.state.emailValue
+    this.state.passwordValue
+  }
 
   render(){
     const { classes, theme } = this.props;
@@ -46,59 +73,59 @@ class Login extends React.Component {
 
     return (
       <div>
-        <Grid container direction="row">
+        <Grid container justify={justify} alignItems={alignItems} direction="row">
+          <Card className={classes.card}>
+            <CardMedia
+              className={classes.cover}
+              image="/images/odin-login.jpg"
+              title="Live from space album cover"
+            />
+            <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <Grid
+                  container
+                  direction="column"
+                  spacing={40}
+                  className={classes.demo}
+                  alignItems={alignItems}
+                  justify={justify}
+                >
+                  <Grid item>
+                    <FormControl fullWidth className={classes.margin}>
+                      <InputLabel htmlFor="email-address">Email Address</InputLabel>
+                      <Input value={this.state.emailValue} onChange={this.handleEmailInput}
+                        id="email-address"
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <AccountCircle />
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item>
+                    <FormControl className={classes.margin}>
+                      <InputLabel htmlFor="password">Password</InputLabel>
+                      <Input value={this.state.passwordValue} onChange={this.handlePasswordInput}
+                        id="password"
+                        startAdornment={
+                          <InputAdornment position="start">
+                            <VpnKey />
+                          </InputAdornment>
+                        }
+                      />
+                    </FormControl>
+                  </Grid>
+                  <Grid item >
+                    <Button variant="fab" color="primary" onClick={() => this.sendDetails()}>
+                      <Check />
+                    </Button>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </div>
+          </Card>
         </Grid>
-        <Card className={classes.card}>
-          <CardMedia
-            className={classes.cover}
-            image="/images/odin-login.jpg"
-            title="Live from space album cover"
-          />
-          <div className={classes.details}>
-            <CardContent className={classes.content}>
-              <Grid
-                container
-                direction="column"
-                spacing={16}
-                className={classes.demo}
-                alignItems={alignItems}
-                justify={justify}
-              >
-                <Grid item>
-                  <FormControl fullWidth className={classes.margin}>
-                    <InputLabel htmlFor="input-with-icon-adornment">Email Address</InputLabel>
-                    <Input
-                      id="input-with-icon-adornment"
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <AccountCircle />
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item>
-                  <FormControl className={classes.margin}>
-                    <InputLabel htmlFor="input-with-icon-adornment">Password</InputLabel>
-                    <Input
-                      id="input-with-icon-adornment"
-                      startAdornment={
-                        <InputAdornment position="start">
-                          <VpnKey />
-                        </InputAdornment>
-                      }
-                    />
-                  </FormControl>
-                </Grid>
-                <Grid item justify={justify}>
-                  <Button variant="fab" color="primary">
-                    <CheckCircle />
-                  </Button>
-                </Grid>
-              </Grid>
-            </CardContent>
-          </div>
-        </Card>
       </div>
     );
   }
