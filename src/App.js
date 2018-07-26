@@ -8,6 +8,7 @@ import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 import Home from './Home';
 // Pages
 import Admin from './client/pages/Admin';
+import Login from './client/pages/Login';
 
 
 const generateClassName = createGenerateClassName();
@@ -20,6 +21,7 @@ const App = () => (
 		<Switch>
 		  <Route path="/administration" component={Admin} />
 			<Route path="/" component={Home} />
+			<Route path="/login" component={Login} />
 		</Switch>
 	</JssProvider>
 );
