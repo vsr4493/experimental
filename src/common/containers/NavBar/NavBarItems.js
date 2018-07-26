@@ -14,7 +14,7 @@ const styles = theme => ({
     display: 'flex',
   },
   paper: {
-    marginRight: theme.spacing.unit * 2,
+    zIndex: '1000'
   },
 });
 
@@ -64,7 +64,7 @@ class NavBarItems extends React.Component {
         >
           {title}
         </Button>
-        <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+        <Popper open={open} anchorEl={this.anchorEl} className={classes.paper} transition disablePortal>
           {({ TransitionProps, placement }) => (
             <Grow
               {...TransitionProps}
