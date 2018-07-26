@@ -1,4 +1,5 @@
 import ActionTypes from "../actionTypes";
+import * as parser from './parser';
 
 const updateDataList = ({ data, isFetchComplete }) => {
 	return {
@@ -20,8 +21,9 @@ export const fetchDataList = payload => (dispatch, getState, { request }) => {
 			if(!data.is_success) {
 				throw data;
 			}
+			const parsedData = parser.normalizeList(data.data);
 			dispatch(updateDataList({
-				data: data.data,
+				data: parsedData,
 				isFetchComplete: true,
 			}));
 			return data;
@@ -35,14 +37,18 @@ export const updateItem = payload => (dispatch, getState, { request }) => {
 	dispatch(updateDataList({
 		isFetchComplete: false,
 	}));
+	const { dataList } = getState();
 	return request
 		.updateItem(payload)
 		.then(({data}) => {
 			if(!data.is_success) {
 				throw data;
 			}
+			const responseItem = data.data;
 			dispatch(updateDataList({
-				data: data.data,
+				data: Object.assign({}, dataList.data, {
+					[responseItem.id]: responseItem 
+				}),
 				isFetchComplete: true,
 			}));
 			return data;

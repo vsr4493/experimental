@@ -1,7 +1,7 @@
 import AdminLocation from './AdminLocation';
 import { connect } from 'react-redux';
 import * as Action from 'common/store/actions';
-import * as selectors from 'common/store/reducers';
+import * as selectors from 'common/store/reducers/dataList';
 
 const CONFIGURATION = {
   FETCH_DATA: {
@@ -21,12 +21,10 @@ const CONFIGURATION = {
 };
 
 const mapStateToProps = ({
-	dataList: {
-    data,
-  },
+	dataList,
 }, { }) => {
   return {
-  	data,
+  	data: selectors.getDataList(dataList),
   };
 };
 

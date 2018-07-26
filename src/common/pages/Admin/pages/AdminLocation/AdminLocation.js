@@ -28,7 +28,9 @@ export class AdminLocation extends Component {
 	}
 
 	updateItem({ formData }) {
-		this.props.updateItem(formData);
+		this.props.updateItem(formData).then(() => {
+			this.toggleEditForm({visible: false});
+		});
 	}
 
 	renderFormModal() {
