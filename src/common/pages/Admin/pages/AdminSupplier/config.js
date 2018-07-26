@@ -8,9 +8,16 @@ export const schema = {
 			type: "string",
 			title: "Supplier Name"
 		},
-		type: {
-			type: "string",
-			title: "Supplier Type"
+		types: {
+			type: "array",
+			title: "Supplier Type",
+			items: [
+				{
+					title: 'supplier type',
+					type: 'string',
+					default: '',
+				},
+			],
 		},
 	}
 };
@@ -19,8 +26,11 @@ export const uiSchema = {
 	name: {
 		"ui:title": "Supplier Name"
 	},
-	type: {
-		"ui:title": "Supplier Type"
+	types: {
+		"ui:title": "Supplier Type",
+		"ui:options": {
+	    addable: true,
+	  },
 	},
 };
 
