@@ -9,18 +9,30 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
+
+
+const styles = theme => ({
+  cell: {
+    fontSize: '12px',
+    padding: '0px'
+  },
+  firstCell: {
+    fontSize: '12px',
+    padding: '10px'
+  }
+});
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, columnData } = this.props;
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, columnData, classes } = this.props;
 
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
+          <TableCell padding="checkbox" className={classes.firstCell}>
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
@@ -30,14 +42,13 @@ class EnhancedTableHead extends React.Component {
           {columnData.map(column => {
             return (
               <TableCell
+                className={classes.cell}
                 key={column.id}
-                numeric={column.numeric}
-                padding={column.disablePadding ? 'none' : 'default'}
+                padding={'default'}
                 sortDirection={orderBy === column.id ? order : false}
               >
                 <Tooltip
                   title="Sort"
-                  placement={column.numeric ? 'bottom-end' : 'bottom-start'}
                   enterDelay={300}
                 >
                   <TableSortLabel
@@ -66,4 +77,4 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
-export default EnhancedTableHead;
+export default withStyles(styles)(EnhancedTableHead);
