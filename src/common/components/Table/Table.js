@@ -24,26 +24,6 @@ import get from 'lodash/get';
 import SearchBar from './SearchBar';
 
 
-
-const formatLabel = (string_like_this) => {
-  const parts = string_like_this.split('_').map(s => s.slice(0, 1).toUpperCase() + s.slice(1))
-  return parts.join(' ');
-}
-const getColumns = (data) => {
-  if (!Array.isArray(data)) {
-    console.warn('[getFirstColumn]: getFirstColumn expect array')
-    return
-  }
-  if (data.length === 0) {
-    return ''
-  }
-
-  const columnNames = Object.keys(data[0])
-
-  return columnNames.map(column => ({id: column, label: formatLabel(column)}));
-};
-
-
 const styles = theme => ({
   root: {
     width: '100%',
@@ -143,9 +123,8 @@ class EnhancedTable extends React.Component {
   };
 
   onChangeSearchForm = (key, event) => {
-    const newSearch = Object.assign({}, this.state.search, {[key]: event.target.value});
     this.setState((prev) => ({
-      search: newSearch
+      search: Object.assign({}, this.state.search, {[key]: event.target.value})
     }));
   }
 
@@ -159,18 +138,17 @@ class EnhancedTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, hideFields, fieldFormatters, tableTitle, searchFields, data } = this.props;
+    const { classes, fieldFormatters, tableTitle, searchFields, data } = this.props;
     if(!data || data.length === 0) {
       return <div>Loading..</div>;
     }
     const { order, orderBy, selected, rowsPerPage, page, columns } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
-    const filteredColumns = columns.filter(col => hideFields.indexOf(col.id) === -1)
     return (
       <Paper className={classes.root}>
         <EnhancedToolbar numSelected={selected.length} tableTitle={tableTitle} />
         <SearchBar
-          searchFields={searchFields.map((s => ({label: formatLabel(s), key: s})))}
+          searchFields={searchFields}
           onChangeSearchForm={this.onChangeSearchForm}
           onSearch={this.performSearch}
         />
@@ -180,10 +158,9 @@ class EnhancedTable extends React.Component {
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              columnData={filteredColumns}
+              columnData={columns}
               onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
-              hideFields={hideFields}
               rowCount={data.length}
             />
             <TableBody>
@@ -205,7 +182,7 @@ class EnhancedTable extends React.Component {
                         <Checkbox checked={isSelected} />
                       </TableCell>
                       {
-                        filteredColumns
+                        columns
                           .map((col, index) =>(
                           <TableCell className={classes.cell}>
                             {
@@ -216,6 +193,11 @@ class EnhancedTable extends React.Component {
                           </TableCell>
                           )
                         )
+                      }
+                      {this.props.renderActionMenu &&
+                        <TableCell>
+                          {this.props.renderActionMenu()}
+                        </TableCell>
                       }
                     </TableRow>
                   );

@@ -27,7 +27,7 @@ class NavBar extends React.Component {
 
   render(){
     const { classes } = this.props;
-    const dummyData = {
+    const routeMap = {
       "Administration" : {
         "Location Master" : "administration/location-master",
         "Batch Master" : "administration/batch-master",
@@ -66,10 +66,10 @@ class NavBar extends React.Component {
       }
     };
 
-    const itemList = Object.keys(dummyData).map((k, i) => {
+    const itemList = Object.keys(routeMap).map((k, i) => {
       return (
         <div key={i}>
-          <NavBarItems data={dummyData[k]} title={k}/>
+          <NavBarItems data={routeMap[k]} title={k}/>
         </div>
     )});
 
