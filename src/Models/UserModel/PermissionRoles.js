@@ -1,1 +1,0 @@
-export default ({ id, permission_id, role_id }) => ({ id, permission_id, role_id });
