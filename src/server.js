@@ -4,9 +4,11 @@ import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
 import { ServerStyleSheet } from 'styled-components'
+import cookieParser from 'cookie-parser';
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
 const server = express();
+server.use(cookieParser());
 server
   .disable('x-powered-by')
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
