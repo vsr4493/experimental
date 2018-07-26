@@ -23,7 +23,7 @@ module.exports =
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "ba396916718d5388a89f";
+/******/ 	var hotCurrentHash = "5dbd3d629299ff7db610";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -1033,14 +1033,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var _jsxFileName = '/Users/sauravvarma/experimental/src/Home.js';
 
-var _templateObject = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_5___default()(['\n  font-size: 22px;\n'], ['\n  font-size: 22px;\n']);
+var _templateObject = babel_runtime_helpers_taggedTemplateLiteral__WEBPACK_IMPORTED_MODULE_5___default()(['\n    font-size: 22px;\n    color: green;\n  '], ['\n    font-size: 22px;\n    color: green;\n  ']);
 
 
 
 
 
 
-var StyledButton = styled_components__WEBPACK_IMPORTED_MODULE_9___default()(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8___default.a)(_templateObject);
+var Styled = {
+  Button: styled_components__WEBPACK_IMPORTED_MODULE_9___default()(_material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8___default.a)(_templateObject)
+};
 
 var Home = function (_React$Component) {
   babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(Home, _React$Component);
@@ -1055,13 +1057,13 @@ var Home = function (_React$Component) {
     key: 'render',
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_6___default.a.createElement(
-        _material_ui_core_Button__WEBPACK_IMPORTED_MODULE_8___default.a,
+        Styled.Button,
         { variant: 'raised', color: 'primary', __source: {
             fileName: _jsxFileName,
-            lineNumber: 14
+            lineNumber: 17
           }
         },
-        'Hello'
+        'Home'
       );
     }
   }]);
@@ -1391,7 +1393,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var express__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(express__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-dom/server */ "react-dom/server");
 /* harmony import */ var react_dom_server__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_dom_server__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! styled-components */ "styled-components");
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_5__);
 var _jsxFileName = '/Users/sauravvarma/experimental/src/server.js';
+
 
 
 
@@ -1402,25 +1407,27 @@ var assets = __webpack_require__(/*! ./build/assets.json */ "./build/assets.json
 var server = express__WEBPACK_IMPORTED_MODULE_3___default()();
 server.disable('x-powered-by').use(express__WEBPACK_IMPORTED_MODULE_3___default.a.static("/Users/sauravvarma/experimental/public")).get('/*', function (req, res) {
   var context = {};
-  var markup = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_4__["renderToString"])(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
+  var sheet = new styled_components__WEBPACK_IMPORTED_MODULE_5__["ServerStyleSheet"]();
+  var markup = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_4__["renderToString"])(sheet.collectStyles(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(
     react_router_dom__WEBPACK_IMPORTED_MODULE_2__["StaticRouter"],
     { context: context, location: req.url, __source: {
         fileName: _jsxFileName,
-        lineNumber: 15
+        lineNumber: 17
       }
     },
     react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_App__WEBPACK_IMPORTED_MODULE_0__["default"], {
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 16
+        lineNumber: 18
       }
     })
-  ));
+  )));
+  var styleTags = sheet.getStyleTags();
 
   if (context.url) {
     res.redirect(context.url);
   } else {
-    res.status(200).send('<!doctype html>\n    <html lang="">\n    <head>\n        <meta http-equiv="X-UA-Compatible" content="IE=edge" />\n        <meta charset="utf-8" />\n        <title>Welcome to Razzle</title>\n        <meta name="viewport" content="width=device-width, initial-scale=1">\n        ' + (assets.client.css ? '<link rel="stylesheet" href="' + assets.client.css + '">' : '') + '\n        ' + ( false ? undefined : '<script src="' + assets.client.js + '" defer crossorigin></script>') + '\n        <!-- jss-insertion-point -->\n    </head>\n    <body>\n        <div id="root">' + markup + '</div>\n    </body>\n</html>');
+    res.status(200).send('<!doctype html>\n    <html lang="">\n    <head>\n        <meta http-equiv="X-UA-Compatible" content="IE=edge" />\n        <meta charset="utf-8" />\n        <title>Welcome to Razzle</title>\n        <meta name="viewport" content="width=device-width, initial-scale=1">\n        ' + styleTags + '\n        ' + (assets.client.css ? '<link rel="stylesheet" href="' + assets.client.css + '">' : '') + '\n        ' + ( false ? undefined : '<script src="' + assets.client.js + '" defer crossorigin></script>') + '\n        <!-- jss-insertion-point -->\n    </head>\n    <body>\n        <div id="root">' + markup + '</div>\n    </body>\n</html>');
   }
 });
 

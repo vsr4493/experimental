@@ -4,16 +4,19 @@ import Button from '@material-ui/core/Button';
 import styled from 'styled-components';
 
 
-const StyledButton = styled(Button)`
-  font-size: 22px;
-`; 
+const Styled = {
+  Button: styled(Button)`
+    font-size: 22px;
+    color: green;
+  `
+}
 
 class Home extends React.Component {
   render() {
     return (
-      <Button variant="raised" color="primary">
-        Hello
-      </Button>
+      <Styled.Button variant="raised" color="primary">
+        Home
+      </Styled.Button>
     );
   }
 }
