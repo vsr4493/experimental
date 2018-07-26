@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Navbar from '../../../../component/Navbar/Navbar';
+import Breadcrumbs from '../../../../component/Breadcrumbs/Breadcrumbs';
 
 export class AdminLocation extends Component {
 
@@ -11,7 +13,13 @@ export class AdminLocation extends Component {
 	render() {
 		return (
 			<div>
-				DUMMY LAYOUT FOR AdminLocation
+				<Navbar />
+				<Breadcrumbs breadcrumbsLink="Home > Product" />
+				SelectedTitle<br />
+				SearchBar<br />
+				Table<br />
+				Footer<br />
+
 			</div>
 		);
 	}

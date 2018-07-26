@@ -7,10 +7,11 @@ import AdminHome from './pages/AdminHome';
 import AdminLocation from './pages/AdminLocation';
 
 const Admin = ({ match }) => {
+	console.log(match);
 	return (
 		<Switch>
-		  <Route path={`${match.path}/location-master`} component={AdminLocation} />
-		  <Route component={AdminHome} />
+			<Route path={`${match.path}/location-master`} component={AdminLocation} />
+			<Route component={AdminHome} />
 		</Switch>
 	);
 }
