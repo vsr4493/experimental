@@ -3,7 +3,9 @@ import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import express from 'express';
 import { renderToString } from 'react-dom/server';
-import { ServerStyleSheet } from 'styled-components'
+import { Provider } from 'react-redux';
+import { ServerStyleSheet } from 'styled-components';
+import createStore from 'common/store/createStore';
 import configureServer from 'server/config/configureServer';
 const assets = require(process.env.RAZZLE_ASSETS_MANIFEST);
 
@@ -18,9 +20,11 @@ server
     const sheet = new ServerStyleSheet()
     const markup = renderToString(
       sheet.collectStyles(
-        <StaticRouter context={context} location={req.url}>
-          <App />
-        </StaticRouter>
+        <Provider store={createStore()}>
+          <StaticRouter context={context} location={req.url}>
+            <App />
+          </StaticRouter>
+        </Provider>
       )
     );
     const styleTags = sheet.getStyleTags()

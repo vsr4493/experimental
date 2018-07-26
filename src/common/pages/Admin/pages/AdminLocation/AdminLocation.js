@@ -10,6 +10,10 @@ export class AdminLocation extends Component {
 		this.props.fetchData();
 	}
 
+	componentDidUpdate() {
+		console.log(this.props.data);
+	}
+
 	render() {
 		return (
 			<div>
