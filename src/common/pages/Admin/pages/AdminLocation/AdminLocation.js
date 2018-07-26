@@ -40,6 +40,27 @@ export class AdminLocation extends Component {
 		// TODO: Pass in custom action renderer
 	}
 
+	getSearchFields() {
+		return [
+			{
+				id: 'aisle',
+				label: 'Aisle',
+			},
+			{
+				label: 'Rack',
+				id: 'rack',
+			},
+			{
+				label: 'Slab',
+				id: 'slab',
+			},
+			{
+				label: 'Bin',
+				id: 'bin',
+			},
+		];
+	}
+
 	render() {
 		const {
 			getData,
@@ -57,7 +78,7 @@ export class AdminLocation extends Component {
 			      created_at: dateFormatter,
 			      updated_at: dateFormatter
 			    }}
-			    searchFields={['aisle', 'rack', 'slab', 'bin']}
+			    searchFields={this.getSearchFields()}
 			  />
 			</div>
 		);
