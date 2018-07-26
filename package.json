@@ -18,6 +18,7 @@
     "express-session": "1.15.6",
     "lodash": "4.17.10",
     "material-ui-breadcrumbs": "^0.1.6",
+    "material-ui-jsonschema-form": "1.0.14",
     "query-string": "6.1.0",
     "razzle": "2.2.0",
     "react": "16.4.1",

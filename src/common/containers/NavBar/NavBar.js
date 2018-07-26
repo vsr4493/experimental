@@ -29,40 +29,40 @@ class NavBar extends React.Component {
     const { classes } = this.props;
     const routeMap = {
       "Administration" : {
-        "Location Master" : "location-master",
-        "Batch Master" : "batch-master",
-        "User Management" : "user-management",
-        "Role Master" : "role-master",
-        "Product" : "product",
-        "Product Location" : "product-location",
-        "Product Supplier" : "product-supplier",
-        "Product Supplier Schemes" : "product-supplier-schemes",
-        "Suppliers" : "suppliers",
-        "On Hold Status" : "on-hold-status",
-        "Error Status" : "error-status"
+        "Location Master" : "administration/location-master",
+        "Batch Master" : "administration/batch-master",
+        "User Management" : "administration/user-management",
+        "Role Master" : "administration/role-master",
+        "Product" : "administration/product",
+        "Product Location" : "administration/product-location",
+        "Product Supplier" : "administration/product-supplier",
+        "Product Supplier Schemes" : "administration/product-supplier-schemes",
+        "Suppliers" : "administration/suppliers",
+        "On Hold Status" : "administration/on-hold-status",
+        "Error Status" : "administration/error-status"
       },
       "Order Processing": {
-        "Order List" : "order-list",
-        "QA" : "qa"
+        "Order List" : "order-processing/order-list",
+        "QA" : "order-processing/qa"
       },
       "Material Management": {
-        "Material Request" : "material-request",
-        "Purchase Order" : "purchase-order",
-        "Purchase Receipt" : "purchase-receipt",
-        "Receive PR" : "receive-pr",
-        "Inwarding" : "inwarding"
+        "Material Request" : "material-management/material-request",
+        "Purchase Order" : "material-management/purchase-order",
+        "Purchase Receipt" : "material-management/purchase-receipt",
+        "Receive PR" : "material-management/receive-pr",
+        "Inwarding" : "material-management/inwarding"
       },
       "Accounting": {
-        "Payments" : "payments",
-        "Sales Invoice" : "sales-invoice",
-        "Purchase Invoice" : "purchase-invoice"
+        "Payments" : "accounting/payments",
+        "Sales Invoice" : "accounting/sales-invoice",
+        "Purchase Invoice" : "accounting/purchase-invoice"
       },
       "Reports": {
-        "Reports 1" : "reports-1",
-        "Reports 2" : "reports-2",
-        "Reports 3" : "reports-3",
-        "Reports 4" : "reports-4",
-        "Reports 5" : "reports-5"
+        "Reports 1" : "reports/reports-1",
+        "Reports 2" : "reports/reports-2",
+        "Reports 3" : "reports/reports-3",
+        "Reports 4" : "reports/reports-4",
+        "Reports 5" : "reports/reports-5"
       }
     };
 
