@@ -14,9 +14,11 @@ server
     const context = {};
     const sheet = new ServerStyleSheet()
     const markup = renderToString(
-      sheet.collectStyles(<StaticRouter context={context} location={req.url}>
-        <App />
-      </StaticRouter>)
+      sheet.collectStyles(
+        <StaticRouter context={context} location={req.url}>
+          <App />
+        </StaticRouter>
+      )
     );
     const styleTags = sheet.getStyleTags()
 
