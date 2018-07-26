@@ -2,12 +2,10 @@ import React, { Component } from "react";
 import Table from "common/components/Table";
 import EnhancedTable from "components/Table";
 import { dateFormatter } from "common/utility/formatters";
-//TEMP
 import Modal from "@material-ui/core/Modal";
 import Form from 'components/Form';
-import * as config from './config';
 
-export class AdminSupplier extends Component {
+export class Base extends Component {
 	constructor() {
 		super();
 		this.toggleEditForm = this.toggleEditForm.bind(this);
@@ -34,6 +32,9 @@ export class AdminSupplier extends Component {
 	}
 
 	renderFormModal() {
+		const {
+			config,
+		} = this.props;
 		return (
 			<Modal
 				aria-labelledby="simple-modal-title"
@@ -52,14 +53,14 @@ export class AdminSupplier extends Component {
 	}
 
 	render() {
-		const { getData, data } = this.props;
+		const { getData, data, options, config } = this.props;
 		return (
 			<div>
 				{this.renderFormModal()}
 				<EnhancedTable
 					getData={getData}
 					data={data}
-					tableTitle={"Supplier Master"}
+					tableTitle={config.pageTitle}
 					fieldFormatters={{
 						created_at: dateFormatter,
 						updated_at: dateFormatter
@@ -73,8 +74,10 @@ export class AdminSupplier extends Component {
 	}
 }
 
-AdminSupplier.defaultProps = {
-	fetchData: () => {}
+Base.defaultProps = {
+	getData: () => {},
+	options: {},
+	config: {},
 };
 
-export default AdminSupplier;
+export default Base;
