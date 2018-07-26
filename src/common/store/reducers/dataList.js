@@ -1,5 +1,6 @@
 import ActionTypes from 'common/store/actionTypes';
 
+// Data will be stored as list of keys
 const initialState = {
   data: [],
   isFetchComplete: false,

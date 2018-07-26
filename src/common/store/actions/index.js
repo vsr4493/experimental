@@ -30,3 +30,25 @@ export const fetchDataList = payload => (dispatch, getState, { request }) => {
 			console.log(err);
 		});
 };
+
+export const updateItem = payload => (dispatch, getState, { request }) => {
+	dispatch(updateDataList({
+		isFetchComplete: false,
+	}));
+	return request
+		.updateItem(payload)
+		.then(({data}) => {
+			if(!data.is_success) {
+				throw data;
+			}
+			dispatch(updateDataList({
+				data: data.data,
+				isFetchComplete: true,
+			}));
+			return data;
+		})
+		.catch(err => {
+			console.log(err);
+		});
+};
+

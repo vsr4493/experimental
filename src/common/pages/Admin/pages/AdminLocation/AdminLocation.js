@@ -10,8 +10,8 @@ import * as config from './config';
 export class AdminLocation extends Component {
 	constructor() {
 		super();
-		this.getColumns = this.getColumns.bind(this);
 		this.toggleEditForm = this.toggleEditForm.bind(this);
+		this.updateItem = this.updateItem.bind(this);
 		this.state = {
 			showEditForm: false,
 			form: null
@@ -19,7 +19,6 @@ export class AdminLocation extends Component {
 	}
 
 	toggleEditForm({ visible, activeItem }) {
-		debugger;
 		const showEditForm =
 			typeof visible === "boolean" ? visible : !this.state.showEditForm;
 		this.setState({
@@ -28,33 +27,9 @@ export class AdminLocation extends Component {
 		});
 	}
 
-	getColumns() {
-		return [
-			{
-				id: "vendor.name",
-				label: "Warehouse"
-			},
-			{
-				id: "aisle",
-				label: "Aisle"
-			},
-			{
-				label: "Rack",
-				id: "rack"
-			},
-			{
-				label: "Slab",
-				id: "slab"
-			},
-			{
-				label: "Bin",
-				id: "bin"
-			}
-		];
-		// TODO: Pass in custom action renderer
+	updateItem({ formData }) {
+		this.props.updateItem(formData);
 	}
-
-	getSearchFields() { return config.searchFields; }
 
 	renderFormModal() {
 		return (
@@ -65,7 +40,10 @@ export class AdminLocation extends Component {
 				onClose={() => this.toggleEditForm({ visible: false })}
 			>
 				<Form 
-
+					uiSchema={config.uiSchema}
+					schema={config.schema}
+					data={this.state.form}
+					onSubmit={this.updateItem}
 				/>
 			</Modal>
 		);

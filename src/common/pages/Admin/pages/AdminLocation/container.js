@@ -21,7 +21,13 @@ const mapDispatchToProps = (dispatch, {}) => ({
       pageCategory,
       ...payload
     }));
-  }
+  },
+  updateItem(payload) {
+    return dispatch(Action.updateItem({
+      pageCategory,
+      ...payload,
+    }));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminLocation);
