@@ -7,7 +7,7 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 // Pages
 import Admin from 'pages/Admin';
-import Login from 'pages/Login';
+import Login from './containers/Login';
 import Table from './component/Table';
 import NavBar from './containers/NavBar';
 
