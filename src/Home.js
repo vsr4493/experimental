@@ -1,31 +1,19 @@
 import React from 'react';
 import logo from './react.svg';
-import './Home.css';
+import Button from '@material-ui/core/Button';
+import styled from 'styled-components';
+
+
+const StyledButton = styled(Button)`
+  font-size: 22px;
+`; 
 
 class Home extends React.Component {
   render() {
     return (
-      <div className="Home">
-        <div className="Home-header">
-          <img src={logo} className="Home-logo" alt="logo" />
-          <h2>Welcome to Razzle</h2>
-        </div>
-        <p className="Home-intro">
-          To get started, edit <code>src/App.js</code> or{' '}
-          <code>src/Home.js</code> and save to reload. blah blah
-        </p>
-        <ul className="Home-resources">
-          <li>
-            <a href="https://github.com/jaredpalmer/razzle">Docs</a>
-          </li>
-          <li>
-            <a href="https://github.com/jaredpalmer/razzle/issues">Issues</a>
-          </li>
-          <li>
-            <a href="https://palmer.chat">Community Slack</a>
-          </li>
-        </ul>
-      </div>
+      <Button variant="raised" color="primary">
+        Hello
+      </Button>
     );
   }
 }
