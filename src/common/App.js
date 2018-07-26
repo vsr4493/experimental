@@ -7,7 +7,7 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 // Pages
 import Admin from 'pages/Admin';
-
+import NavBar from './containers/NavBar';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -18,6 +18,7 @@ const App = () => (
 	<JssProvider jss={jss} generateClassName={generateClassName}>
 		<Switch>
 		  <Route path="/administration" component={Admin} />
+			<Route path="/nav" component={NavBar} />
 			<Redirect to="/administration" />
 		</Switch>
 	</JssProvider>

@@ -48,7 +48,7 @@ server
         }
         <!-- jss-insertion-point -->
     </head>
-    <body>
+    <body style="margin: 0px;">
         <div id="root">${markup}</div>
     </body>
 </html>`
