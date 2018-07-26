@@ -368,6 +368,7 @@ const getData = (dataURL) => new Promise(function (resolve, reject) {
   //   createData('Nougat', 360, 19.0, 9, 37.0),
   //   createData('Oreo', 437, 18.0, 63, 4.0),
   // ];
+  console.log(dataURL);
   resolve(dumbodata.data);
 });
 
@@ -434,12 +435,16 @@ class EnhancedTable extends React.Component {
   handleRequestSort = (event, property) => {
     const orderBy = property;
     let order = 'desc';
-
     if (this.state.orderBy === property && this.state.order === 'desc') {
       order = 'asc';
     }
-
-    this.setState({ order, orderBy });
+    const page = 0;
+    const rowsPerPage = this.state.rowsPerPage;
+    this.setState({ order, orderBy }, () => {
+      this.props.getData({order, orderBy, page, rowsPerPage}).then(data =>
+        this.setState(() => ({data, page: 0}))
+      );
+    });
   };
 
   handleSelectAllClick = (event, checked) => {
@@ -472,23 +477,26 @@ class EnhancedTable extends React.Component {
   };
 
   handleChangePage = (event, page) => {
-    this.setState({ page });
+    const { order, orderBy, rowsPerPage } = this.state;
+    this.props.getData({ order, orderBy, page, rowsPerPage }).then(data => this.setState(() => ({data, page}))) ;
   };
 
   handleChangeRowsPerPage = event => {
-    this.setState({ rowsPerPage: event.target.value });
+    const { order, orderBy, page } = this.state;
+    const rowsPerPage = event.target.value;
+    this.props.getData({ order, orderBy, page, rowsPerPage }).then(data => this.setState(() => ({data, rowsPerPage})));
   };
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, hideFields, fieldFormatters } = this.props;
+    const { classes, hideFields, fieldFormatters, tableTitle } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page, columns } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
     const filteredColumns = columns.filter(col => hideFields.indexOf(col.id) === -1)
     return (
       <Paper className={classes.root}>
-        <EnhancedToolbar numSelected={selected.length} />
+        <EnhancedToolbar numSelected={selected.length} tableTitle={tableTitle} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -575,6 +583,7 @@ const ExportableTable = () => (
     getColumns={getColumns}
     dataURL={'not required'}
     hideFields={['id']}
+    tableTitle={"Stuff Stuff"}
     fieldFormatters={{
       created_at: dateFormatter,
       updated_at: dateFormatter
