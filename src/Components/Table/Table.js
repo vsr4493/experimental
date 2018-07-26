@@ -20,6 +20,7 @@ import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedToolbar from './EnhancedToolbar';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { dateFormatter } from '../../utility/formatters';
+import SearchBar from './SearchBar';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -425,6 +426,7 @@ class EnhancedTable extends React.Component {
       page: 0,
       rowsPerPage: 25,
       columns: [],
+      search: {}
     };
   }
   componentDidMount () {
@@ -479,25 +481,44 @@ class EnhancedTable extends React.Component {
 
   handleChangePage = (event, page) => {
     const { order, orderBy, rowsPerPage } = this.state;
-    this.props.getData({ order, orderBy, page, rowsPerPage }).then(data => this.setState(() => ({data, page}))) ;
+    this.props.getData({ order, orderBy: orderBy.id, page, rowsPerPage }).then(data => this.setState(() => ({data, page}))) ;
   };
 
   handleChangeRowsPerPage = event => {
     const { order, orderBy, page } = this.state;
     const rowsPerPage = event.target.value;
-    this.props.getData({ order, orderBy, page, rowsPerPage }).then(data => this.setState(() => ({data, rowsPerPage})));
+    this.props.getData({ order, orderBy: orderBy.id, page, rowsPerPage }).then(data => this.setState(() => ({data, rowsPerPage})));
   };
 
+  onChangeSearchForm = (key, event) => {
+    const newSearch = Object.assign({}, this.state.search, {[key]: event.target.value});
+    this.setState((prev) => ({
+      search: newSearch
+    }));
+  }
+
+  performSearch = () => {
+    const { order, orderBy, page, rowsPerPage, search } = this.state;
+
+    this.props.getData({ order, orderBy: orderBy.id, page:0, rowsPerPage, search }).then(data => {
+      this.setState(() => ({data, page: 0}))
+    })
+  }
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
-    const { classes, hideFields, fieldFormatters, tableTitle } = this.props;
+    const { classes, hideFields, fieldFormatters, tableTitle, searchFields } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page, columns } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
     const filteredColumns = columns.filter(col => hideFields.indexOf(col.id) === -1)
     return (
       <Paper className={classes.root}>
         <EnhancedToolbar numSelected={selected.length} tableTitle={tableTitle} />
+        <SearchBar
+          searchFields={searchFields.map((s => ({label: formatLabel(s), key: s})))}
+          onChangeSearchForm={this.onChangeSearchForm}
+          onSearch={this.performSearch}
+        />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -584,6 +605,7 @@ const ExportableTable = () => (
       created_at: dateFormatter,
       updated_at: dateFormatter
     }}
+    searchFields={['vendor_id', 'location_id']}
   />
 )
 export default ExportableTable;
