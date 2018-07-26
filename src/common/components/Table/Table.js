@@ -20,7 +20,7 @@ import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedToolbar from './EnhancedToolbar';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import { dateFormatter } from 'common/utility/formatters';
-
+import get from 'lodash/get';
 import SearchBar from './SearchBar';
 
 
@@ -66,6 +66,7 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
+
   constructor(props) {
     super(props);
 
@@ -79,6 +80,7 @@ class EnhancedTable extends React.Component {
       search: {}
     };
   }
+
   componentDidMount () {
     this.props.getData({}).then(
       (data) => this.setState(() => ({order: 'asc', orderBy: this.props.getColumns(data)[0], columns: this.props.getColumns(data)}))
@@ -158,8 +160,9 @@ class EnhancedTable extends React.Component {
 
   render() {
     const { classes, hideFields, fieldFormatters, tableTitle, searchFields, data } = this.props;
-    console.log(data, this.props.getData)
-    ;
+    if(!data || data.length === 0) {
+      return <div>Loading..</div>;
+    }
     const { order, orderBy, selected, rowsPerPage, page, columns } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
     const filteredColumns = columns.filter(col => hideFields.indexOf(col.id) === -1)
@@ -208,7 +211,7 @@ class EnhancedTable extends React.Component {
                             {
                               fieldFormatters[col.id] ?
                                 fieldFormatters[col.id](n[col.id]) :
-                                n[col.id]
+                                get(n, col.id)
                             }
                           </TableCell>
                           )

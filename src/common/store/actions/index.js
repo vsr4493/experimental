@@ -11,7 +11,6 @@ const updateDataList = ({ data, isFetchComplete }) => {
 }
 
 export const fetchDataList = payload => (dispatch, getState, { request }) => {
-	console.log(request);
 	dispatch(updateDataList({
 		isFetchComplete: false,
 	}));

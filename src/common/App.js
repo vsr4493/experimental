@@ -8,8 +8,8 @@ import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 // Pages
 import Admin from 'pages/Admin';
 import Login from 'pages/Login';
-import EnhancedTable from './component/Table';
-import NavBar from './containers/NavBar';
+import EnhancedTable from 'components/Table';
+import NavBar from 'containers/NavBar';
 import {fetchDataList} from './store/actions';
 import { connect } from 'react-redux';
 import { dateFormatter } from 'common/utility/formatters';
@@ -53,18 +53,6 @@ let ExportableTable = ({getData, data}) => (
     searchFields={['vendor_id', 'location_id']}
   />
 )
-
-
-ExportableTable = connect(
-	(state) => ({
-		data: state.dataList.data
-	}),
-	(dispatch) => ({
-		getData: (params) => dispatch(fetchDataList(params))
-	})
-)(ExportableTable)
-
-
 
 const App = () => (
 	<div>

@@ -1,27 +1,64 @@
 import React, { Component } from 'react';
-import Breadcrumbs from '../../../../component/Breadcrumbs/Breadcrumbs';
+import Table from 'common/components/Table';
+import EnhancedTable from 'components/Table';
+import { dateFormatter } from 'common/utility/formatters';
 
 export class AdminLocation extends Component {
 
-	componentDidMount() {
-		// Fetch data
-		// No need to optimize yet, always re-fetch when mounted
-		this.props.fetchData();
+	constructor() {
+		super();
+		this.getColumns = this.getColumns.bind(this);
 	}
 
 	componentDidUpdate() {
-		console.log(this.props.data);
+		this.props.fetchData();
+	}
+
+	getColumns() {
+		return [
+			{
+				id: 'vendor.name',
+				label: 'Warehouse',
+			},
+			{
+				id: 'aisle',
+				label: 'Aisle',
+			},
+			{
+				label: 'Rack',
+				id: 'rack',
+			},
+			{
+				label: 'Slab',
+				id: 'slab',
+			},
+			{
+				label: 'Bin',
+				id: 'bin',
+			},
+		];
+		// TODO: Pass in custom action renderer
 	}
 
 	render() {
+		const {
+			getData,
+			data,
+		} = this.props;
 		return (
 			<div>
-				<Breadcrumbs breadcrumbsLink="Home > Product" />
-				SelectedTitle<br />
-				SearchBar<br />
-				Table<br />
-				Footer<br />
-				Is it here?
+			  <EnhancedTable
+					getData={getData}
+					data={data}
+			    getColumns={this.getColumns}
+			    hideFields={['id']}
+			    tableTitle={"Location Master"}
+			    fieldFormatters={{
+			      created_at: dateFormatter,
+			      updated_at: dateFormatter
+			    }}
+			    searchFields={['aisle', 'rack', 'slab', 'bin']}
+			  />
 			</div>
 		);
 	}

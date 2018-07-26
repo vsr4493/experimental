@@ -16,7 +16,7 @@ const mapStateToProps = ({
 };
 
 const mapDispatchToProps = (dispatch, {}) => ({
-  fetchData(payload) {
+  getData(payload) {
     return dispatch(Action.fetchDataList({
       pageCategory,
       ...payload
