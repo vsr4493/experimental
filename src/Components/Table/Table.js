@@ -19,6 +19,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedToolbar from './EnhancedToolbar';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import { dateFormatter } from '../../utility/formatters';
 
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -571,11 +572,6 @@ EnhancedTable.propTypes = {
 
 EnhancedTable = withStyles(styles)(EnhancedTable);
 
-const dateFormatter = (string) => {
-  const date = new Date(string);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-  return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
-}
 
 const ExportableTable = () => (
   <EnhancedTable
