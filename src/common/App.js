@@ -10,6 +10,7 @@ import Admin from 'pages/Admin';
 import Login from './containers/Login';
 import Table from './component/Table';
 import NavBar from './containers/NavBar';
+import Edit from './pages/Edit';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -24,6 +25,7 @@ const App = () => (
 				<Route exact path="/tb" component={Table} />
 			  <Route path="/administration" component={Admin} />
 				<Route path="/login" component={Login} />
+				<Route path="/edit" component={Edit} />
 				<Redirect to="/administration" />
 			</Switch>
 		</JssProvider>

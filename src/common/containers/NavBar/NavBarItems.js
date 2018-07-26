@@ -8,6 +8,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -22,10 +23,6 @@ class NavBarItems extends React.Component {
   state = {
     open: false,
   };
-
-  redirectTo = (url) => {
-    window.location.href = `/${url}`;
-  }
 
   handleToggle = () => {
     this.setState(state => ({ open: !state.open }));
@@ -46,7 +43,9 @@ class NavBarItems extends React.Component {
     const menuItems = Object.keys(data).map((k, i) => {
       return (
         <div key={i}>
-          <MenuItem onClick={() => this.redirectTo(data[k])} >{k}</MenuItem>
+          <MenuItem onClick={this.handleToggle}>
+            <Link to={`/${data[k]}`}>{k}</Link>
+          </MenuItem>
         </div>
       )
     });
