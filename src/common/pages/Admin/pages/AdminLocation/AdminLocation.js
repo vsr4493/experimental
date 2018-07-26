@@ -4,6 +4,8 @@ import EnhancedTable from "components/Table";
 import { dateFormatter } from "common/utility/formatters";
 //TEMP
 import Modal from "@material-ui/core/Modal";
+import Form from 'components/Form';
+import * as config from './config';
 
 export class AdminLocation extends Component {
 	constructor() {
@@ -52,26 +54,7 @@ export class AdminLocation extends Component {
 		// TODO: Pass in custom action renderer
 	}
 
-	getSearchFields() {
-		return [
-			{
-				id: "aisle",
-				label: "Aisle"
-			},
-			{
-				label: "Rack",
-				id: "rack"
-			},
-			{
-				label: "Slab",
-				id: "slab"
-			},
-			{
-				label: "Bin",
-				id: "bin"
-			}
-		];
-	}
+	getSearchFields() { return config.searchFields; }
 
 	renderFormModal() {
 		return (
@@ -81,7 +64,9 @@ export class AdminLocation extends Component {
 				open={this.state.showEditForm}
 				onClose={() => this.toggleEditForm({ visible: false })}
 			>
-				<div>yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!yolo!</div>
+				<Form 
+
+				/>
 			</Modal>
 		);
 	}
@@ -94,14 +79,14 @@ export class AdminLocation extends Component {
 				<EnhancedTable
 					getData={getData}
 					data={data}
-					getColumns={this.getColumns}
 					hideFields={["id"]}
 					tableTitle={"Location Master"}
 					fieldFormatters={{
 						created_at: dateFormatter,
 						updated_at: dateFormatter
 					}}
-					searchFields={this.getSearchFields()}
+					columns={config.columns}
+					searchFields={config.searchFields}
 					onEdit={this.toggleEditForm}
 				/>
 			</div>

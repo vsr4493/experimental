@@ -67,8 +67,8 @@ class EnhancedTable extends React.Component {
       .then(data =>
         this.setState(() => ({
           order: "asc",
-          orderBy: this.props.getColumns(data)[0],
-          columns: this.props.getColumns(data)
+          orderBy: this.props.columns[0],
+          columns: this.props.columns,
         }))
       );
   }
