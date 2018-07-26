@@ -2,9 +2,10 @@ import React from 'react';
 import Route from 'react-router-dom/Route';
 import Redirect from 'react-router-dom/Redirect';
 import Switch from 'react-router-dom/Switch';
-import JssProvider from 'react-jss/lib/JssProvider';
 import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
+import Table from 'common/component/Table'
+import JssProvider from 'react-jss/lib/JssProvider';
 // Pages
 import Admin from 'pages/Admin';
 import Login from 'pages/Login';
@@ -17,6 +18,7 @@ jss.options.insertionPoint = 'jss-insertion-point';
 const App = () => (
 	<JssProvider jss={jss} generateClassName={generateClassName}>
 		<Switch>
+			<Route exact path="/tb" component={Table} />
 		  <Route path="/administration" component={Admin} />
 			<Route path="/login" component={Login} />
 			<Redirect to="/administration" />
