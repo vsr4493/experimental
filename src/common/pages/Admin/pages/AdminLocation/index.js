@@ -1,2 +1,2 @@
-import AdminLocation from './AdminLocation';
+import AdminLocation from './container';
 export default AdminLocation;
