@@ -25,6 +25,7 @@ export const fetchDataList = payload => (dispatch, getState, { request }) => {
 				data: data.data,
 				isFetchComplete: true,
 			}));
+			return data;
 		})
 		.catch(err => {
 			console.log(err);
