@@ -80,7 +80,6 @@ class NavBar extends React.Component {
             {itemList}
           </Toolbar>
         </AppBar>
-        <AdminHome />
       </div>
     );
   }
