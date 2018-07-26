@@ -8,7 +8,7 @@ import Table from 'common/component/Table'
 import JssProvider from 'react-jss/lib/JssProvider';
 // Pages
 import Admin from 'pages/Admin';
-
+import Login from 'pages/Login';
 
 const generateClassName = createGenerateClassName();
 const jss = create(jssPreset());
@@ -20,6 +20,7 @@ const App = () => (
 		<Switch>
 			<Route exact path="/tb" component={Table} />
 		  <Route path="/administration" component={Admin} />
+			<Route path="/login" component={Login} />
 			<Redirect to="/administration" />
 		</Switch>
 	</JssProvider>
