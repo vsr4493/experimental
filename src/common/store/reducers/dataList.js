@@ -5,7 +5,7 @@ const initialState = {
   isFetchComplete: false,
 };
 
-const userReducer = (state = 0, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.UPDATE_DATA_LIST: {
       return Object.assign({}, state, {

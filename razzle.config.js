@@ -5,6 +5,7 @@ module.exports = {
  
     config.resolve['alias'] = {
       'components': path.resolve('./src/common/components'),
+      'containers': path.resolve('./src/common/containers'),
       'pages': path.resolve('./src/common/pages'),
       'layouts': path.resolve('./src/common/layouts'),
       'hocs': path.resolve('./src/common/hocs'),

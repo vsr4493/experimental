@@ -1,9 +1,13 @@
 import axios from 'axios';
+import qs from 'query-string';
 
 const API_MAP = {
 	'LOCATION_MASTER': {
-		url: '/api/getInventory',
+		url: '/api/locations',
 		method: 'GET',
+    data: {
+      include: 'vendor',
+    }
 	}
 }
 
@@ -14,20 +18,29 @@ const request = (payload) => {
   return axios.request(payload);
 }
 
+const withQueryString = (baseURL, data) => `${baseURL}?${qs.stringify(data)}`;
+
 export const fetchDataList = ({
 	order,
 	orderBy,
 	page,
 	rowsPerPage,
 	pageCategory,
+  search,
 }) => {
+  console.log(search);
+  const pageSpecificParams = API_MAP[pageCategory];
+  const data = {
+    page,
+    per_page: rowsPerPage,
+    sort_by: `${orderBy}:${order}`,
+    ...search,
+    ...pageSpecificParams.data
+  }
   const payload = {
-  	url: API_MAP[pageCategory].url,
-  	method: API_MAP[pageCategory].method,
+  	url: withQueryString(pageSpecificParams.url, data),
+  	method: pageSpecificParams.method,
   };
-  Object.assign(payload, {
-  	// Add custom params here
-  });
   payload.headers = {};
   return request(payload);
 };
