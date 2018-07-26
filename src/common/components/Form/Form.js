@@ -1,19 +1,27 @@
-import React from 'react'
-import { render } from 'react-dom'
-import Form from 'material-ui-jsonschema-form'
+import React from 'react';
+import Form from 'material-ui-jsonschema-form';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = {
+  field: {
+    border: 0,
+    display: 'inline-block',
+  }
+}
 
 class WrappedForm extends React.Component {
   render() {
-    
+    const { classes, data, schema, onSubmit, uiSchema } = this.props;
     return (
       <Form
-        formData={this.props.data}
-        schema={this.props.schema}
-        onSubmit={this.props.onSubmit}
-        uiSchema={this.props.uiSchema}
+        className={classes.field}
+        formData={data}
+        schema={schema}
+        onSubmit={onSubmit}
+        uiSchema={uiSchema}
       />
     )
   }
 }
 
-export default WrappedForm;
+export default withStyles(styles)(WrappedForm);
