@@ -2,8 +2,9 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import proxy from 'express-http-proxy';
 
-const API_ENDPOINT = `hackapi.1mg.com:90/odin/api/v1`;
-const AUTH_TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwiZXhwIjoxNTM3ODExODMyfQ.PGnri-EAmOrPJbwwSvnIVKzkKRn7W6t7LkOfzP28KkE';
+const API_HOST = `hackapi.1mg.com:90/odin`;
+const API_ENDPOINT = `${API_HOST}/api/v1`;
+const AUTH_TOKEN_KEY = 'authToken'
 
 // Decorate given server instance with necessary middlewares
 export default (server) => {
@@ -15,6 +16,20 @@ export default (server) => {
 	  cookie: { secure: true }
 	}))
 	server.use(cookieParser());
+	server.use('/api/login', proxy(`${API_HOST}/login`, {
+		proxyReqPathResolver: function (req) {
+	    const result = `/odin/login`;
+	    return result;
+    },
+	  userResDecorator(proxyRes, proxyResData, userReq, userRes) {
+	    const response = JSON.parse(proxyResData.toString('utf8'));
+	    if(response.is_success) {
+	    	const data = response.data;
+	    	userRes.cookie(AUTH_TOKEN_KEY, data.token);
+	    }
+	    return JSON.stringify(response);
+	  }
+	}));
 	server.use('/api', proxy(API_ENDPOINT, {
 		proxyReqPathResolver: function (req) {
 	    const result = `/odin/api/v1${req.url}`;
@@ -22,8 +37,9 @@ export default (server) => {
     },
 		proxyReqOptDecorator: function(proxyReqOpts, srcReq) {
 			// Decorate headers
+			const token = srcReq.cookies[AUTH_TOKEN_KEY];
 			Object.assign(proxyReqOpts.headers, {
-				'Authorization': AUTH_TOKEN,
+				'Authorization': token,
 			});
 			console.log(proxyReqOpts);
 	    return proxyReqOpts;

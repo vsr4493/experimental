@@ -8,16 +8,6 @@ const filterUndefined = data => {
   return data;
 };
 
-const API_MAP = {
-	'LOCATION_MASTER': {
-		url: '/api/locations',
-		method: 'GET',
-    data: {
-      include: 'vendor',
-    }
-	}
-}
-
 const transformRequest = (payload) => {
 };
 
@@ -27,7 +17,6 @@ const request = (payload) => {
 
 const withQueryString = (baseURL, data) => {
   const filteredData = filterUndefined(data);
-  console.log(filteredData);
   return `${baseURL}?${qs.stringify(filteredData)}`;
 }
 
@@ -36,22 +25,44 @@ export const fetchDataList = ({
 	orderBy,
 	page,
 	rowsPerPage,
-	pageCategory,
+	apiConfiguration,
   search,
 }) => {
-  const pageSpecificParams = API_MAP[pageCategory];
   const data = {
     page,
     per_page: rowsPerPage,
     sort_by: typeof orderBy !== 'undefined' ? `${orderBy}:${order}` : '',
     ...search,
-    ...pageSpecificParams.data
+    ...apiConfiguration.data
   }
   const payload = {
-  	url: withQueryString(pageSpecificParams.url, data),
-  	method: pageSpecificParams.method,
+  	url: withQueryString(apiConfiguration.url, data),
+  	method: apiConfiguration.method,
   };
   payload.headers = {};
-  console.log(payload);
   return request(payload);
 };
+
+
+export const updateItem = ({ updated, apiConfiguration }) => {
+  const payload = {
+    url: apiConfiguration.url,
+    method: apiConfiguration.method,
+    data: updated,
+  };
+  payload.headers = {};
+  return request(payload);
+};
+
+export const login = ({email, password}) => {
+  const payload = {
+    url: '/api/login',
+    method: 'post',
+    data: {
+      email,
+      password
+    }
+  }
+  payload.headers = {};
+  return request(payload);
+}

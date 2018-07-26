@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import Table from "common/components/Table";
 import EnhancedTable from "components/Table";
 import { dateFormatter } from "common/utility/formatters";
-import { withStyles } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+//TEMP
+import Modal from "@material-ui/core/Modal";
 import Form from 'components/Form';
 import * as config from './config';
 
-export class AdminLocation extends Component {
+export class AdminSupplier extends Component {
 	constructor() {
 		super();
 		this.toggleEditForm = this.toggleEditForm.bind(this);
@@ -38,22 +35,19 @@ export class AdminLocation extends Component {
 
 	renderFormModal() {
 		return (
-			<Dialog
-				fullScreen
-        aria-labelledby="responsive-dialog-title"
+			<Modal
+				aria-labelledby="simple-modal-title"
+				aria-describedby="simple-modal-description"
 				open={this.state.showEditForm}
 				onClose={() => this.toggleEditForm({ visible: false })}
 			>
-				<DialogTitle id="responsive-dialog-title">{"Edit items"}</DialogTitle>
-				<DialogContent>
-					<Form
-						uiSchema={config.uiSchema}
-						schema={config.schema}
-						data={this.state.form}
-						onSubmit={this.updateItem}
-					/>
-        </DialogContent>
-			</Dialog>
+				<Form 
+					uiSchema={config.uiSchema}
+					schema={config.schema}
+					data={this.state.form}
+					onSubmit={this.updateItem}
+				/>
+			</Modal>
 		);
 	}
 
@@ -65,7 +59,7 @@ export class AdminLocation extends Component {
 				<EnhancedTable
 					getData={getData}
 					data={data}
-					tableTitle={"Location Master"}
+					tableTitle={"Supplier Master"}
 					fieldFormatters={{
 						created_at: dateFormatter,
 						updated_at: dateFormatter
@@ -79,8 +73,8 @@ export class AdminLocation extends Component {
 	}
 }
 
-AdminLocation.defaultProps = {
+AdminSupplier.defaultProps = {
 	fetchData: () => {}
 };
 
-export default AdminLocation;
+export default AdminSupplier;
