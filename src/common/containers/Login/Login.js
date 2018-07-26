@@ -62,7 +62,9 @@ class Login extends React.Component {
   }
 
   sendDetails(){
-    
+    // pass these two to a function for auth
+    this.state.emailValue
+    this.state.passwordValue
   }
 
   render(){
