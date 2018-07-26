@@ -1,11 +1,12 @@
 import ActionTypes from "../actionTypes";
 import * as parser from './parser';
 
-const updateDataList = ({ data, isFetchComplete }) => {
+const updateDataList = ({ data, keys, isFetchComplete }) => {
 	return {
 		type: ActionTypes.UPDATE_DATA_LIST,
 		payload: {
 			data,
+			keys,
 			isFetchComplete,
 		},
 	}
@@ -21,9 +22,10 @@ export const fetchDataList = payload => (dispatch, getState, { request }) => {
 			if(!data.is_success) {
 				throw data;
 			}
-			const parsedData = parser.normalizeList(data.data);
+			const responseData = data.data;
 			dispatch(updateDataList({
-				data: parsedData,
+				data: parser.normalizeList(responseData),
+				keys: responseData.map(obj => obj.id),
 				isFetchComplete: true,
 			}));
 			return data;
