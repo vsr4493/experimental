@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
 
 const styles = theme => ({
@@ -33,7 +34,9 @@ class SearchBar extends React.Component {
       {
         searchFields.map(field => (
           <div className={classes.inputContainer} key={field.key}>
-            <div className={classes.label}> {field.label} </div>
+            <Typography color="inherit" variant="body1">
+              {field.label}
+            </Typography>
             <Input
               className={classes.input}
               onChange={(e) => onChangeSearchForm(field.key, e)}

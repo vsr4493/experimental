@@ -19,7 +19,8 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import EnhancedTableHead from './EnhancedTableHead';
 import EnhancedToolbar from './EnhancedToolbar';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import { dateFormatter } from '../../utility/formatters';
+import { dateFormatter } from 'common/utility/formatters';
+
 import SearchBar from './SearchBar';
 
 let counter = 0;
