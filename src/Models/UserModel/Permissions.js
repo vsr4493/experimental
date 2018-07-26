@@ -1,1 +1,1 @@
-export default (id, label, status) => ({ id, label, status });
+export default ({ id, label, status }) => ({ id, label, status });
