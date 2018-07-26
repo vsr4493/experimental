@@ -3,7 +3,22 @@ import { connect } from 'react-redux';
 import * as Action from 'common/store/actions';
 import * as selectors from 'common/store/reducers';
 
-const pageCategory = 'LOCATION_MASTER';
+const CONFIGURATION = {
+  FETCH_DATA: {
+    url: '/api/locations',
+    method: 'GET',
+    data: {
+      include: 'vendor',
+    }
+  },
+  UPDATE_ITEM: (payload) => ({
+    url: `/api/locations/${payload.id}`,
+    method: 'PUT',
+    data: {
+      include: 'vendor',
+    },
+  }),
+};
 
 const mapStateToProps = ({
 	dataList: {
@@ -18,14 +33,14 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch, {}) => ({
   getData(payload) {
     return dispatch(Action.fetchDataList({
-      pageCategory,
+      apiConfiguration: CONFIGURATION.FETCH_DATA,
       ...payload
     }));
   },
   updateItem(payload) {
     return dispatch(Action.updateItem({
-      pageCategory,
-      ...payload,
+      apiConfiguration: CONFIGURATION.UPDATE_ITEM(payload),
+      updated: payload,
     }));
   },
 });

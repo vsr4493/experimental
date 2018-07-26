@@ -49,7 +49,7 @@ const styles = theme => ({
 class EnhancedTable extends React.Component {
   constructor(props) {
     super(props);
-
+    this.onChangeSearchForm = this.onChangeSearchForm.bind(this);
     this.state = {
       order: "",
       orderBy: "",
@@ -67,7 +67,7 @@ class EnhancedTable extends React.Component {
       .then(data =>
         this.setState(() => ({
           order: "asc",
-          orderBy: this.props.columns[0],
+          orderBy: this.props.defaultOrderBy || 'id',
           columns: this.props.columns,
         }))
       );
@@ -132,10 +132,10 @@ class EnhancedTable extends React.Component {
       .then(data => this.setState(() => ({ rowsPerPage })));
   };
 
-  onChangeSearchForm = (key, event) => {
+  onChangeSearchForm = (key, { nativeEvent }) => {
     this.setState(prev => ({
       search: Object.assign({}, this.state.search, {
-        [key]: event.target.value
+        [key]: nativeEvent.target.value
       })
     }));
   };

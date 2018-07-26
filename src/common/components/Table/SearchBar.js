@@ -33,13 +33,13 @@ class SearchBar extends React.Component {
 
       {
         searchFields.map(field => (
-          <div className={classes.inputContainer} key={field.key}>
+          <div className={classes.inputContainer} key={field.id}>
             <Typography color="inherit" variant="body1">
               {field.label}
             </Typography>
             <Input
               className={classes.input}
-              onChange={(e) => onChangeSearchForm(field.key, e)}
+              onChange={(e) => onChangeSearchForm(field.id, e)}
               inputProps={{
                 'aria-label': field.label,
               }}

@@ -57,7 +57,6 @@ export class AdminLocation extends Component {
 				<EnhancedTable
 					getData={getData}
 					data={data}
-					hideFields={["id"]}
 					tableTitle={"Location Master"}
 					fieldFormatters={{
 						created_at: dateFormatter,
