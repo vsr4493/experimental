@@ -1,28 +1,24 @@
-import AdminLocation from './AdminLocation';
+import AdminSupplier from './AdminSupplier';
 import { connect } from 'react-redux';
 import * as Action from 'common/store/actions';
 import * as selectors from 'common/store/reducers/dataList';
 
 const CONFIGURATION = {
   FETCH_DATA: {
-    url: '/api/locations',
+    url: '/api/suppliers',
     method: 'GET',
-    data: {
-      include: 'vendor',
-    }
+    data: {}
   },
   UPDATE_ITEM: (payload) => ({
-    url: `/api/locations/${payload.id}`,
+    url: `/api/suppliers/${payload.id}`,
     method: 'PUT',
-    data: {
-      include: 'vendor',
-    },
+    data: payload,
   }),
 };
 
 const mapStateToProps = ({
 	dataList,
-}, ownProps) => {
+}, { }) => {
   return {
   	data: selectors.getDataList(dataList),
   };
@@ -43,4 +39,4 @@ const mapDispatchToProps = (dispatch, {}) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminLocation);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminSupplier);

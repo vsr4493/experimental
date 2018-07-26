@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const dataListReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case ActionTypes.UPDATE_DATA_LIST: {
       return Object.assign({}, state, {
