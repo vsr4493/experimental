@@ -7,8 +7,9 @@ import Redirect from 'react-router-dom/Redirect';
 import AdminLocation from './pages/AdminLocation';
 import AdminSupplier from './pages/AdminSupplier';
 import AdminProduct from './pages/AdminProduct';
+import AdminSupplierScheme from './pages/AdminSupplierScheme';
+import AdminBatch from './pages/AdminBatch';
 import AdminProductSupplier from './pages/AdminProductSupplier';
-
 const Admin = ({ match }) => {
 	return (
 		<Switch>
@@ -16,6 +17,8 @@ const Admin = ({ match }) => {
 			<Route path={`${match.path}/product-supplier/:itemID?`} component={AdminProductSupplier} />
 			<Route path={`${match.path}/suppliers/:itemID?`} component={AdminSupplier} />
 			<Route path={`${match.path}/product/:itemID?`} component={AdminProduct} />
+			<Route path={`${match.path}/product-supplier-schemes/:itemID?`} component={AdminSupplierScheme} />
+			<Route path={`${match.path}/batch-master/:itemID?`} component={AdminBatch} />
 
 		</Switch>
 	);

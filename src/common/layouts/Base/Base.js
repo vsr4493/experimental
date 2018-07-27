@@ -104,8 +104,8 @@ export class Base extends Component {
 					}}
 					columns={config.columns}
 					searchFields={config.searchFields}
-					showEditor={this.toggleEditForm}
-					getDetailsRoute={this.getDetailsRoute}
+					showEditor={config.schema ? this.toggleEditForm : undefined}
+					getDetailsRoute={config.itemSchema ? this.getDetailsRoute : undefined}
 				/>
 			</div>
 		);
