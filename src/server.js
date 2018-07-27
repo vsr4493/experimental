@@ -17,20 +17,6 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {};
-  /*  
-    const sheet = new ServerStyleSheet()
-    const markup = renderToString(
-      sheet.collectStyles(
-        <Provider store={createStore()}>
-          <StaticRouter context={context} location={req.url}>
-            <App />
-          </StaticRouter>
-        </Provider>
-      )
-    );
-    const styleTags = sheet.getStyleTags()
-*/
-
     if (context.url) {
       res.redirect(context.url);
     } else {

@@ -1,12 +1,12 @@
 import App from 'common/App';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { hydrate, render } from 'react-dom';
 import { Provider } from 'react-redux';
 import createStore from 'common/store/createStore';
 
 const store = createStore();
-hydrate(
+render(
 	<Provider store={store}>
 	  <BrowserRouter>
 	    <App />
