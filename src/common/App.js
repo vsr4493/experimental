@@ -7,6 +7,8 @@ import { create } from 'jss';
 import { createGenerateClassName, jssPreset } from '@material-ui/core/styles';
 // Pages
 import Admin from 'pages/Admin';
+import Order from 'pages/Order';
+import Material from 'pages/Material';
 import Login from 'pages/Login';
 import NavBar from 'containers/NavBar';
 
@@ -32,6 +34,12 @@ const App = () => (
 			<Switch>
 				{isLoggedIn() &&
 				  <Route path="/administration" component={Admin} />
+				}
+				{isLoggedIn() &&
+				  <Route path="/order-processing" component={Order} />
+				}
+				{isLoggedIn() &&
+				  <Route path="/material-management" component={Material} />
 				}
 				{!isLoggedIn() &&
 					<Route path="/login" component={Login} />

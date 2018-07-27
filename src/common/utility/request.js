@@ -31,10 +31,15 @@ export const fetchDataList = ({
   const data = {
     page,
     per_page: rowsPerPage,
-    sort_by: typeof orderBy !== 'undefined' ? `${orderBy}:${order}` : '',
     ...search,
     ...apiConfiguration.data
+  };
+  if(typeof orderBy !== 'undefined') {
+    Object.assign(data, {
+      sort_by: `${orderBy}:${order}`,  
+    });
   }
+    
   const payload = {
   	url: withQueryString(apiConfiguration.url, data),
   	method: apiConfiguration.method,

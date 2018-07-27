@@ -30,19 +30,14 @@ class NavBar extends React.Component {
       "Administration" : {
         "Location Master" : "administration/location-master",
         "Batch Master" : "administration/batch-master",
-        "User Management" : "administration/user-management",
-        "Role Master" : "administration/role-master",
         "Product" : "administration/product",
         "Product Location" : "administration/product-location",
         "Product Supplier" : "administration/product-supplier",
         "Product Supplier Schemes" : "administration/product-supplier-schemes",
         "Suppliers" : "administration/suppliers",
-        "On Hold Status" : "administration/on-hold-status",
-        "Error Status" : "administration/error-status"
       },
       "Order Processing": {
         "Order List" : "order-processing/order-list",
-        "QA" : "order-processing/qa"
       },
       "Material Management": {
         "Material Request" : "material-management/material-request",

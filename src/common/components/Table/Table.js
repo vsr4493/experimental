@@ -25,6 +25,7 @@ import get from "lodash/get";
 import SearchBar from "./SearchBar";
 import Button from "@material-ui/core/Button";
 import Build from "@material-ui/icons/Build";
+import Cloud from "@material-ui/icons/Cloud";
 import Details from "@material-ui/icons/Details";
 import { Link } from 'react-router-dom';
 
@@ -98,7 +99,7 @@ class EnhancedTable extends React.Component {
 
   handleSelectAllClick = (event, checked) => {
     if (checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
+      this.setState(state => ({ selected: this.props.data.map(n => n.id) }));
       return;
     }
     this.setState({ selected: [] });
@@ -180,11 +181,13 @@ class EnhancedTable extends React.Component {
           numSelected={selected.length}
           tableTitle={tableTitle}
         />
-        <SearchBar
-          searchFields={searchFields}
-          onChangeSearchForm={this.onChangeSearchForm}
-          onSearch={this.performSearch}
-        />
+        {searchFields.length > 0 &&
+          <SearchBar
+            searchFields={searchFields}
+            onChangeSearchForm={this.onChangeSearchForm}
+            onSearch={this.performSearch}
+          />
+        }
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
@@ -237,17 +240,19 @@ class EnhancedTable extends React.Component {
                           </Button>
                         </TableCellIcon>
                       )}
-                      <TableCellIcon>
-                        <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
-                          <Button
-                            variant="fab"
-                            mini
-                            color="primary"
-                          >
-                            <Details />
-                          </Button>
-                        </Link>
-                      </TableCellIcon>
+                      {typeof this.props.getDetailsRoute !== "undefined" &&
+                        <TableCellIcon>
+                          <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
+                            <Button
+                              variant="fab"
+                              mini
+                              color="primary"
+                            >
+                              <Details />
+                            </Button>
+                          </Link>
+                        </TableCellIcon>
+                      }
                     </TableRow>
                   );
                 })}
