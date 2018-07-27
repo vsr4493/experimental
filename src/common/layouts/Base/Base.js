@@ -2,8 +2,19 @@ import React, { Component } from "react";
 import Table from "common/components/Table";
 import EnhancedTable from "components/Table";
 import { dateFormatter } from "common/utility/formatters";
+import { withTheme, MuiThemeProvider, createMuiTheme  } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Form from 'components/Form';
+
+const theme = createMuiTheme({
+	overrides: {
+		MuiPaper: {
+			root: {
+				display: 'inline-block',
+			}
+		}
+	}
+})
 
 export class Base extends Component {
 	constructor() {
@@ -32,23 +43,23 @@ export class Base extends Component {
 	}
 
 	renderFormModal() {
-		const {
-			config,
-		} = this.props;
+		const { config } = this.props;
 		return (
-			<Modal
-				aria-labelledby="simple-modal-title"
-				aria-describedby="simple-modal-description"
-				open={this.state.showEditForm}
-				onClose={() => this.toggleEditForm({ visible: false })}
-			>
-				<Form 
-					uiSchema={config.uiSchema}
-					schema={config.schema}
-					data={this.state.form}
-					onSubmit={this.updateItem}
-				/>
-			</Modal>
+			<MuiThemeProvider theme={theme}>
+				<Modal
+					aria-labelledby="simple-modal-title"
+					aria-describedby="simple-modal-description"
+					open={this.state.showEditForm}
+					onClose={() => this.toggleEditForm({ visible: false })}
+				>
+					<Form
+						uiSchema={config.uiSchema}
+						schema={config.schema}
+						data={this.state.form}
+						onSubmit={this.updateItem}
+					/>
+				</Modal>
+			</MuiThemeProvider>
 		);
 	}
 
@@ -81,4 +92,4 @@ Base.defaultProps = {
 	config: {},
 };
 
-export default Base;
+export default withTheme(theme)(Base);
