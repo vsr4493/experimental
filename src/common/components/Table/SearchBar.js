@@ -5,7 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import styled from 'styled-components';
 
 const styles = theme => ({
   searchbar: {
@@ -25,6 +25,14 @@ const styles = theme => ({
     margin: '0px 10px'
   }
 });
+
+const SearchLabel = styled(Typography)`
+  && {
+    margin-top: 10px;
+  }
+`;
+
+
 class SearchBar extends React.Component {
   render () {
     const { classes, searchFields, onChangeSearchForm, onSearch } = this.props;
@@ -34,9 +42,9 @@ class SearchBar extends React.Component {
       {
         searchFields.map(field => (
           <div className={classes.inputContainer} key={field.id}>
-            <Typography color="inherit" variant="body1">
+            <SearchLabel color="inherit" variant="body1">
               {field.label}
-            </Typography>
+            </SearchLabel>
             <Input
               className={classes.input}
               onChange={(e) => onChangeSearchForm(field.id, e)}
