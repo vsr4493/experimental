@@ -27,6 +27,7 @@ import Button from "@material-ui/core/Button";
 import Build from "@material-ui/icons/Build";
 import Cloud from "@material-ui/icons/Cloud";
 import Details from "@material-ui/icons/Details";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
@@ -180,6 +181,7 @@ class EnhancedTable extends React.Component {
         <EnhancedToolbar
           numSelected={selected.length}
           tableTitle={tableTitle}
+          classes={classes.toolbar}
         />
         {searchFields.length > 0 &&
           <SearchBar
@@ -240,6 +242,7 @@ class EnhancedTable extends React.Component {
                           </Button>
                         </TableCellIcon>
                       )}
+<<<<<<< HEAD
                       {typeof this.props.getDetailsRoute !== "undefined" &&
                         <TableCellIcon>
                           <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
@@ -253,6 +256,19 @@ class EnhancedTable extends React.Component {
                           </Link>
                         </TableCellIcon>
                       }
+=======
+                      <TableCellIcon>
+                        <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
+                          <Button
+                            variant="fab"
+                            mini
+                            color="primary"
+                          >
+                            <KeyboardArrowRight />
+                          </Button>
+                        </Link>
+                      </TableCellIcon>
+>>>>>>> cae0fcfc04278f68fc1aadc735765d7adc1b8337
                     </TableRow>
                   );
                 })}
