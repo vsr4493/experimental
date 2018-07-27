@@ -7,7 +7,7 @@ import Form from 'components/Form';
 import Button from "@material-ui/core/Button";
 import ViewList from "@material-ui/icons/ViewList";
 import { Link } from 'react-router-dom';
-import PicklistView from './PicklistView';
+import PickListView from './PickListView';
 
 export class OrderList extends Component {
 	constructor() {
@@ -81,7 +81,7 @@ export class OrderList extends Component {
 		const { getData, data, baseData, meta, options, config, match } = this.props;
 		if(this.validatePathParams(match) && this.state.picklistDetails) {
 			return (
-				<PicklistView
+				<PickListView
 					data={this.state.picklistDetails}
 				/>
 			);
