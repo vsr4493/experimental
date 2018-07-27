@@ -25,11 +25,14 @@ const styles = theme => ({
     flexDirection: 'column',
   },
   content: {
-    flex: '1 0 auto',
+    flex: '1 1 auto',
   },
   cover: {
     width: 300,
     height: 275,
+  },
+  text: {
+    textAlign: 'center'
   }
 });
 
@@ -73,7 +76,7 @@ class Login extends React.Component {
     return (
       <div>
         <Grid container justify={justify} alignItems={alignItems} direction="row">
-          <Grid item xs={12}>
+          <Grid className={classes.text} item xs={6}>
           <Typography variant="display4" gutterBottom>
             THANOS
           </Typography>
@@ -84,7 +87,7 @@ class Login extends React.Component {
             <CardMedia
               className={classes.cover}
               image="/images/thanos.jpg"
-              title="Live from space album cover"
+              title="Thanos rules over ODIN"
             />
             <div className={classes.details}>
               <CardContent className={classes.content}>

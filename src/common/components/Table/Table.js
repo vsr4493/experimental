@@ -11,7 +11,6 @@ import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
 import TableSortLabel from "@material-ui/core/TableSortLabel";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
@@ -48,7 +47,10 @@ const styles = theme => ({
   firstCell: {
     fontSize: "12px",
     padding: "10px"
-  }
+  },
+  iconCell: {
+    paddingRight: '0px'
+  },
 });
 
 const TableCellIcon = styled(TableCell)`
@@ -177,7 +179,7 @@ class EnhancedTable extends React.Component {
     const emptyRows =
       rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
     return (
-      <Paper className={classes.root}>
+      <div className={classes.root}>
         <EnhancedToolbar
           numSelected={selected.length}
           tableTitle={tableTitle}
@@ -231,27 +233,23 @@ class EnhancedTable extends React.Component {
                         </TableCell>
                       ))}
                       {typeof this.props.showEditor !== "undefined" && (
-                        <TableCellIcon>
-                          <Button
-                            variant="fab"
-                            mini
+                        <TableCellIcon className={classes.iconCell}>
+                          <IconButton
                             color="secondary"
                             onClick={() => this.props.showEditor({ activeItem: item })}
                           >
                             <Build />
-                          </Button>
+                          </IconButton>
                         </TableCellIcon>
                       )}
                       {typeof this.props.getDetailsRoute !== "undefined" &&
-                        <TableCellIcon>
+                        <TableCellIcon className={classes.iconCell}>
                           <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
-                            <Button
-                              variant="fab"
-                              mini
+                            <IconButton
                               color="primary"
                             >
                               <KeyboardArrowRight />
-                            </Button>
+                            </IconButton>
                           </Link>
                         </TableCellIcon>
                       }
@@ -275,7 +273,7 @@ class EnhancedTable extends React.Component {
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
-      </Paper>
+      </div>
     );
   }
 }

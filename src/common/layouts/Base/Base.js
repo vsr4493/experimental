@@ -12,9 +12,8 @@ const theme = createMuiTheme({
 		MuiPaper: {
 			root: {
 				display: 'inline-block',
-				marginLeft: '35%',
 				marginTop: '10%',
-				border: 0
+				marginLeft: '35%'
 			}
 		}
 	}
