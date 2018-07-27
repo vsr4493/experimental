@@ -46,3 +46,8 @@ export const searchFields = [
 		label: "Supplier Name"
 	},
 ];
+
+export const itemSchema = {
+	'name': "Supplier Name",
+	'status': "Supplier Status",
+};
