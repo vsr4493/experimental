@@ -42,11 +42,17 @@ class NavBarItems extends React.Component {
     const { open } = this.state;
 
     const menuItems = Object.keys(data).map((k, i) => {
+      const isFunction = typeof(data[k]) === 'function';
       return (
         <div key={i}>
-          <Link style={{ textDecoration: 'none' }} to={`/${data[k]}`}>
-            <MenuItem onClick={this.handleToggle}>{k}</MenuItem>
-          </Link>
+          {isFunction &&
+            <MenuItem onClick={data[k]}>{k}</MenuItem>
+          }
+          {!isFunction &&
+            <Link style={{ textDecoration: 'none' }} to={`/${data[k]}`}>
+              <MenuItem onClick={this.handleToggle}>{k}</MenuItem>
+            </Link>
+          }
         </div>
       )
     });

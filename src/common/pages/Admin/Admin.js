@@ -4,7 +4,6 @@ import Switch from 'react-router-dom/Switch';
 import Redirect from 'react-router-dom/Redirect';
 
 // Inner Pages
-import AdminHome from './pages/AdminHome';
 import AdminLocation from './pages/AdminLocation';
 import AdminSupplier from './pages/AdminSupplier';
 
