@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import AddIcon from '@material-ui/icons/Add';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 
@@ -39,7 +40,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedToolbar = props => {
-  const { numSelected, classes, tableTitle } = props;
+  const { numSelected, classes, tableTitle, showEditor, allowsAdd } = props;
 
   return (
     <Toolbar
@@ -60,6 +61,13 @@ let EnhancedToolbar = props => {
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions} style={{display: 'flex'}}>
+        {allowsAdd &&
+          <Tooltip title="Add New">
+            <IconButton aria-label="Add New" onClick={()=>{showEditor(true)}}>
+              <AddIcon/>
+            </IconButton>
+          </Tooltip>
+        }
         {numSelected > 0 ? (
           <Tooltip title="Delete">
             <IconButton aria-label="Delete">

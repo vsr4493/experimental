@@ -75,7 +75,7 @@ export class Base extends Component {
 	}
 
 	render() {
-		const { getData, data, baseData, meta, options, config, match } = this.props;
+		const { getData, data, baseData, meta, allowsAdd, options, config, match } = this.props;
 		if(
 			data.length > 0 &&
 			match.params &&
@@ -96,6 +96,7 @@ export class Base extends Component {
 					getData={getData}
 					data={data}
 					meta={meta}
+					allowsAdd={allowsAdd}
 					tableTitle={config.pageTitle}
 					fieldFormatters={{
 						created_at: dateFormatter,
