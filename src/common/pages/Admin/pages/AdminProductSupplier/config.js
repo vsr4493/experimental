@@ -2,19 +2,11 @@ export const schema = {
 	title: "Supplier Edit",
 	description: "Edit Supplier Details",
 	type: "object",
-	required: ["name", "type"],
+	required: ["supplier_sku_id"],
 	properties: {
-		name: {
+		supplier_sku_id: {
 			type: "string",
-			title: "Supplier Name",
-		},
-		types: {
-			type: "array",
-			title: "Supplier Type",
-			items: {
-				type: "string",
-				default: "",
-			},
+			title: "Supplier Sku ID",
 		},
 	}
 };
@@ -31,23 +23,26 @@ export const uiSchema = {
 
 export const columns = [
 	{
-		id: "name",
-		label: "Supplier Name"
+		id: "supplier_sku_id",
+		label: "Supplier Sku ID"
 	},
 	{
-		id: "types",
-		label: "Types"
+		id: "created_at",
+		label: "Created"
+	},
+	{
+		id: "updated_at",
+		label: "Updated"
 	},
 ];
 
 export const searchFields = [
 	{
-		id: "name",
-		label: "Supplier Name"
+		id: "supplier_sku_id",
+		label: "Supplier Sku ID"
 	},
 ];
 
 export const itemSchema = {
-	'name': "Supplier Name",
-	'status': "Supplier Status",
+	'supplier_sku_id': "Supplier Sku ID",
 };
