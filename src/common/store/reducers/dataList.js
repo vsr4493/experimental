@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 // Data will be stored as list of keys
 const initialState = {
   data: {},
+  meta: {},
   keys: [],
   isFetchComplete: false,
 };
@@ -12,10 +13,11 @@ const dataListReducer = (state = initialState, action) => {
     case ActionTypes.UPDATE_DATA_LIST: {
       return Object.assign({}, state, {
         data: action.payload.data || state.data,
+        meta: action.payload.meta || state.meta,
         keys: action.payload.keys || state.keys,
         isFetchComplete: action.payload.isFetchComplete,
       });
-    } 
+    }
     default:
       return state;
   }

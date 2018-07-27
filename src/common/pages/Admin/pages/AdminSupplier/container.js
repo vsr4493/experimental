@@ -22,6 +22,7 @@ const mapStateToProps = ({
 	dataList,
 }, { }) => ({
 	data: selectors.getDataList(dataList),
+  meta: dataList.meta,
   config,
 });
 
