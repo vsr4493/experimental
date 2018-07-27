@@ -1,4 +1,4 @@
-import Base from 'layouts/Base';
+import OrderList from './OrderList';
 import { connect } from 'react-redux';
 import * as Action from 'common/store/actions';
 import * as selectors from 'common/store/reducers/dataList';
@@ -17,6 +17,13 @@ const CONFIGURATION = {
     method: 'PUT',
     data: payload,
   }),
+  FETCH_ITEM_DATA: (id) => ({
+    url: `/api/sales_orders/${id}/sales_order_items`,
+    method: 'GET',
+    data: {
+      include: 'sku,batch_and_location'
+    },
+  }),
 };
 
 // Add any options here if needed
@@ -25,7 +32,6 @@ const mapStateToProps = ({ dataList }, ownProps) => ({
   baseData: dataList.data,
   meta: dataList.meta,
   config,
-  ...ownProps,
 });
 
 const mapDispatchToProps = (dispatch, {}) => ({
@@ -41,6 +47,11 @@ const mapDispatchToProps = (dispatch, {}) => ({
       updated: payload,
     }));
   },
+  getItem(payload) {
+    return dispatch(Action.fetchItemData({
+      apiConfiguration: CONFIGURATION.FETCH_ITEM_DATA(payload),
+    }));
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Base);
+export default connect(mapStateToProps, mapDispatchToProps)(OrderList);

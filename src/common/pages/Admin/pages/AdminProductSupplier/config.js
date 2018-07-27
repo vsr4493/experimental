@@ -27,6 +27,14 @@ export const columns = [
 		label: "Supplier Sku ID"
 	},
 	{
+		id: "sku.sku_name",
+		label: "Sku Name"
+	},
+	{
+		id: "supplier.name",
+		label: "Supplier Name"
+	},
+	{
 		id: "created_at",
 		label: "Created"
 	},
@@ -40,6 +48,14 @@ export const searchFields = [
 	{
 		id: "supplier_sku_id",
 		label: "Supplier Sku ID"
+	},
+	{
+		id: "sku_name",
+		label: "Sku Name"
+	},
+	{
+		id: "supplier_name",
+		label: "Supplier Name"
 	},
 ];
 

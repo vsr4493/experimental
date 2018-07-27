@@ -59,6 +59,15 @@ export const updateItem = ({ updated, apiConfiguration }) => {
   return request(payload);
 };
 
+export const fetchItemData = ({ apiConfiguration }) => {
+  const payload = {
+    url: withQueryString(apiConfiguration.url, apiConfiguration.data),
+    method: apiConfiguration.method,
+  };
+  payload.headers = {};
+  return request(payload);
+}
+
 export const login = ({email, password}) => {
   const payload = {
     url: '/api/login',

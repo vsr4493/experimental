@@ -54,8 +54,10 @@ const styles = theme => ({
 });
 
 const TableCellIcon = styled(TableCell)`
-  width: 50px;
-  padding: 0px 20px;
+  && {
+    width: 50px;
+    padding: 0px 20px;
+  }
 `;
 
 class EnhancedTable extends React.Component {
@@ -173,7 +175,7 @@ class EnhancedTable extends React.Component {
       meta
     } = this.props;
     if (!data || data.length === 0) {
-      return <div>Loading..</div>;
+      return <div></div>;
     }
     const { order, orderBy, selected, rowsPerPage, page, columns } = this.state;
     const emptyRows =
@@ -227,9 +229,13 @@ class EnhancedTable extends React.Component {
                       </TableCell>
                       {columns.map((col, index) => (
                         <TableCell className={classes.cell}>
-                          {fieldFormatters[col.id]
-                            ? fieldFormatters[col.id](item[col.id])
-                            : get(item, col.id)}
+                          { typeof col.renderCell !== 'undefined' && 
+                            col.renderCell(item, col)
+                          }
+                          { typeof col.renderCell === 'undefined' && fieldFormatters[col.id]
+                              ? fieldFormatters[col.id](item[col.id])
+                              : get(item, col.id)
+                          } 
                         </TableCell>
                       ))}
                       {typeof this.props.showEditor !== "undefined" && (
