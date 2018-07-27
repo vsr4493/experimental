@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import styled from 'styled-components';
 import { withStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -24,6 +25,8 @@ import get from "lodash/get";
 import SearchBar from "./SearchBar";
 import Button from "@material-ui/core/Button";
 import Build from "@material-ui/icons/Build";
+import Details from "@material-ui/icons/Details";
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -45,6 +48,11 @@ const styles = theme => ({
     padding: "10px"
   }
 });
+
+const TableCellIcon = styled(TableCell)`
+  width: 50px;
+  padding: 0px 20px;
+`;
 
 class EnhancedTable extends React.Component {
   constructor(props) {
@@ -217,17 +225,27 @@ class EnhancedTable extends React.Component {
                             : get(item, col.id)}
                         </TableCell>
                       ))}
-                      {typeof this.props.onEdit !== "undefined" && (
-                        <TableCell>
+                      {typeof this.props.showEditor !== "undefined" && (
+                        <TableCellIcon>
                           <Button
                             variant="fab"
-                            color="primary"
-                            onClick={() => this.props.onEdit({ activeItem: item })}
+                            color="secondary"
+                            onClick={() => this.props.showEditor({ activeItem: item })}
                           >
                             <Build />
                           </Button>
-                        </TableCell>
+                        </TableCellIcon>
                       )}
+                      <TableCellIcon>
+                        <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
+                          <Button
+                            variant="fab"
+                            color="primary"
+                          >
+                            <Details />
+                          </Button>
+                        </Link>
+                      </TableCellIcon>
                     </TableRow>
                   );
                 })}

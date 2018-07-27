@@ -21,7 +21,7 @@ const dataListReducer = (state = initialState, action) => {
   }
 };
 
-const dataSelector = (state) => (state.data);
+export const dataSelector = (state) => (state.data);
 const keysSelector = (state) => (state.keys);
 
 export const getDataList = createSelector(
