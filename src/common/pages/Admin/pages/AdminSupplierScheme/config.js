@@ -8,14 +8,6 @@ export const schema = {
 			type: "string",
 			title: "Supplier Name",
 		},
-		types: {
-			type: "array",
-			title: "Supplier Type",
-			items: {
-				type: "string",
-				default: "",
-			},
-		},
 	}
 };
 
