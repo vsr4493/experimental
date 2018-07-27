@@ -171,6 +171,7 @@ class EnhancedTable extends React.Component {
       fieldFormatters,
       tableTitle,
       searchFields,
+      allowsAdd,
       data,
       meta
     } = this.props;
@@ -185,6 +186,8 @@ class EnhancedTable extends React.Component {
         <EnhancedToolbar
           numSelected={selected.length}
           tableTitle={tableTitle}
+          allowsAdd={allowsAdd}
+          showEditor={this.props.showEditor}
           classes={classes.toolbar}
         />
         {searchFields.length > 0 &&
@@ -229,13 +232,13 @@ class EnhancedTable extends React.Component {
                       </TableCell>
                       {columns.map((col, index) => (
                         <TableCell className={classes.cell}>
-                          { typeof col.renderCell !== 'undefined' && 
+                          { typeof col.renderCell !== 'undefined' &&
                             col.renderCell(item, col)
                           }
                           { typeof col.renderCell === 'undefined' && fieldFormatters[col.id]
                               ? fieldFormatters[col.id](item[col.id])
                               : get(item, col.id)
-                          } 
+                          }
                         </TableCell>
                       ))}
                       {typeof this.props.showEditor !== "undefined" && (
