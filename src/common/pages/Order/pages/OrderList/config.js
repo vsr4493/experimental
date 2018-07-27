@@ -33,6 +33,7 @@ export const columns = [
 	},
 ];
 
+export const pageTitle = "Order Master";
 export const searchFields = [
 	{
 		id: "customer_name",
