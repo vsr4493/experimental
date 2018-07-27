@@ -23,7 +23,7 @@ import { dateFormatter } from "common/utility/formatters";
 import get from "lodash/get";
 import SearchBar from "./SearchBar";
 import Button from "@material-ui/core/Button";
-import Build from "@material-ui/icons/Build";
+import EditIcon from "@material-ui/icons/Edit";
 import Cloud from "@material-ui/icons/Cloud";
 import Details from "@material-ui/icons/Details";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
@@ -244,7 +244,7 @@ class EnhancedTable extends React.Component {
                             color="secondary"
                             onClick={() => this.props.showEditor({ activeItem: item })}
                           >
-                            <Build />
+                            <EditIcon />
                           </IconButton>
                         </TableCellIcon>
                       )}
