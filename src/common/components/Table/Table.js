@@ -242,7 +242,6 @@ class EnhancedTable extends React.Component {
                           </Button>
                         </TableCellIcon>
                       )}
-<<<<<<< HEAD
                       {typeof this.props.getDetailsRoute !== "undefined" &&
                         <TableCellIcon>
                           <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
@@ -251,24 +250,11 @@ class EnhancedTable extends React.Component {
                               mini
                               color="primary"
                             >
-                              <Details />
+                              <KeyboardArrowRight />
                             </Button>
                           </Link>
                         </TableCellIcon>
                       }
-=======
-                      <TableCellIcon>
-                        <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
-                          <Button
-                            variant="fab"
-                            mini
-                            color="primary"
-                          >
-                            <KeyboardArrowRight />
-                          </Button>
-                        </Link>
-                      </TableCellIcon>
->>>>>>> cae0fcfc04278f68fc1aadc735765d7adc1b8337
                     </TableRow>
                   );
                 })}
