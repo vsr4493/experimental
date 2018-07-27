@@ -12,6 +12,9 @@ const theme = createMuiTheme({
 		MuiPaper: {
 			root: {
 				display: 'inline-block',
+				marginLeft: '35%',
+				marginTop: '10%',
+				border: 0
 			}
 		}
 	}
@@ -76,12 +79,12 @@ export class Base extends Component {
 		const { getData, data, baseData, meta, options, config, match } = this.props;
 		if(
 			data.length > 0 &&
-			match.params && 
-			match.params.itemID && 
+			match.params &&
+			match.params.itemID &&
 			match.params.itemID.length > 0
 		) {
 			return (
-				<DetailedView 
+				<DetailedView
 					data={baseData[match.params.itemID]}
 					config={config.itemSchema}
 				/>
