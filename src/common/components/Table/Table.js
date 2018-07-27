@@ -229,6 +229,7 @@ class EnhancedTable extends React.Component {
                         <TableCellIcon>
                           <Button
                             variant="fab"
+                            mini
                             color="secondary"
                             onClick={() => this.props.showEditor({ activeItem: item })}
                           >
@@ -240,6 +241,7 @@ class EnhancedTable extends React.Component {
                         <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
                           <Button
                             variant="fab"
+                            mini
                             color="primary"
                           >
                             <Details />
