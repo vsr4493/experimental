@@ -1,4 +1,4 @@
-import session from 'express-session';
+import session from 'cookie-session';
 import cookieParser from 'cookie-parser';
 import proxy from 'express-http-proxy';
 

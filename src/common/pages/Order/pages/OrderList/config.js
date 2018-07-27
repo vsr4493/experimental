@@ -31,32 +31,12 @@ export const columns = [
 		type: 'icon',
 		action: 'download',
 	},
-	{
-		id: "barcode",
-		label: "Invoice",
-		type: 'icon',
-		action: 'download',
-	},
-	{
-		id: "types",
-		label: "Picklist",
-		type: 'icon',
-		action: 'download',
-	},
 ];
 
 export const searchFields = [
 	{
 		id: "customer_name",
 		label: "Customer Name"
-	},
-	{
-		id: "created_at",
-		label: "Created On"
-	},
-	{
-		id: "updated_at",
-		label: "Updated At"
 	},
 	{
 		id: "order_reference_id",

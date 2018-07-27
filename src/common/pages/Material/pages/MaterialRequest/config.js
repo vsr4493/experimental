@@ -71,17 +71,4 @@ export const searchFields = [
 		id: "status",
 		label: "Product Status"
 	},
-	{
-		id: "created_on",
-		label: "From Date"
-	},
-	{
-		id: "delivery_date",
-		label: "To Date"
-	},
 ];
-
-export const itemSchema = {
-	'name': "Supplier Name",
-	'status': "Supplier Status",
-};

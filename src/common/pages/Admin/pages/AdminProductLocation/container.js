@@ -6,17 +6,17 @@ import * as config from './config';
 
 const CONFIGURATION = {
   FETCH_DATA: {
-    url: '/api/locations',
+    url: '/api/inventories',
     method: 'GET',
     data: {
-      include: 'vendor',
+      include: 'location,sku',
     }
   },
   UPDATE_ITEM: (payload) => ({
-    url: `/api/locations/${payload.id}`,
+    url: `/api/inventories/${payload.id}`,
     method: 'PUT',
     data: {
-      include: 'vendor',
+      include: 'location,sku',
     },
   }),
 };

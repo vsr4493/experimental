@@ -9,6 +9,7 @@ import AdminSupplier from './pages/AdminSupplier';
 import AdminSupplierScheme from './pages/AdminSupplierScheme';
 import AdminBatch from './pages/AdminBatch';
 import AdminProductSupplier from './pages/AdminProductSupplier';
+import AdminProductLocation from './pages/AdminProductLocation';
 const Admin = ({ match }) => {
 	return (
 		<Switch>
@@ -17,6 +18,7 @@ const Admin = ({ match }) => {
 			<Route path={`${match.path}/suppliers/:itemID?`} component={AdminSupplier} />
 			<Route path={`${match.path}/product-supplier-schemes/:itemID?`} component={AdminSupplierScheme} />
 			<Route path={`${match.path}/batch-master/:itemID?`} component={AdminBatch} />
+			<Route path={`${match.path}/product-location/:itemID?`} component={AdminProductLocation} />
 		</Switch>
 	);
 }
