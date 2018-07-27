@@ -23,7 +23,12 @@ const styles = theme => ({
 });
 
 const TableCellHeader = styled(TableCell)`
-  text-transform: capitalize;
+  && {
+    text-transform: capitalize;
+    font-weight: 700;
+    color: #333;
+    font-size: 14px;
+  }
 `;
 
 const formatLabel = (label) => {

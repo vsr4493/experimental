@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import styled from 'styled-components';
 
 const styles = theme => ({
   cell: {
@@ -21,6 +21,16 @@ const styles = theme => ({
     padding: '10px'
   }
 });
+
+const TableCellStyled = styled(TableCell)`
+  && {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+  }
+`;
+
+
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
@@ -32,16 +42,16 @@ class EnhancedTableHead extends React.Component {
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox" className={classes.firstCell}>
+          <TableCellStyled padding="checkbox" className={classes.firstCell}>
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
               onChange={onSelectAllClick}
             />
-          </TableCell>
+          </TableCellStyled>
           {columnData.map(column => {
             return (
-              <TableCell
+              <TableCellStyled
                 className={classes.cell}
                 key={column.id}
                 padding={'default'}
@@ -59,7 +69,7 @@ class EnhancedTableHead extends React.Component {
                     {column.label}
                   </TableSortLabel>
                 </Tooltip>
-              </TableCell>
+              </TableCellStyled>
             );
           }, this)}
         </TableRow>
