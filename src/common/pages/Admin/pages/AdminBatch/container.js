@@ -8,7 +8,9 @@ const CONFIGURATION = {
   FETCH_DATA: {
     url: '/api/batches',
     method: 'GET',
-    data: {},
+    data: {
+      include: 'sku'
+    },
   },
   UPDATE_ITEM: (payload) => ({
     url: `/api/batches/${payload.id}`,
