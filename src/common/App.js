@@ -45,7 +45,7 @@ const App = () => (
 					<Route path="/login" component={Login} />
 				}
 				{isLoggedIn() &&
-					<Redirect to="/administration" />
+					<Redirect to="/administration/product" />
 				}
 				{!isLoggedIn() &&
 					<Redirect to="/login" />
