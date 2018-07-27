@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import DeleteIcon from '@material-ui/icons/Delete';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
@@ -57,7 +59,7 @@ let EnhancedToolbar = props => {
         )}
       </div>
       <div className={classes.spacer} />
-      <div className={classes.actions}>
+      <div className={classes.actions} style={{display: 'flex'}}>
         {numSelected > 0 ? (
           <Tooltip title="Delete">
             <IconButton aria-label="Delete">
@@ -70,6 +72,16 @@ let EnhancedToolbar = props => {
             </IconButton>
           </Tooltip>
         )}
+        <Tooltip title="Download">
+          <IconButton aria-label="Download">
+              <CloudDownloadIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Upload">
+          <IconButton aria-label="Upload">
+              <CloudUploadIcon />
+          </IconButton>
+        </Tooltip>
       </div>
     </Toolbar>
   );
