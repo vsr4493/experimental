@@ -43,20 +43,6 @@ class NavBar extends React.Component {
         "Material Request" : "material-management/material-request",
         "Purchase Order" : "material-management/purchase-order",
         "Purchase Receipt" : "material-management/purchase-receipt",
-        "Receive PR" : "material-management/receive-pr",
-        "Inwarding" : "material-management/inwarding"
-      },
-      "Accounting": {
-        "Payments" : "accounting/payments",
-        "Sales Invoice" : "accounting/sales-invoice",
-        "Purchase Invoice" : "accounting/purchase-invoice"
-      },
-      "Reports": {
-        "Reports 1" : "reports/reports-1",
-        "Reports 2" : "reports/reports-2",
-        "Reports 3" : "reports/reports-3",
-        "Reports 4" : "reports/reports-4",
-        "Reports 5" : "reports/reports-5"
       },
       "Profile": {
         "Logout" : () => {
