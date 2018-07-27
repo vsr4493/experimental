@@ -21,6 +21,7 @@ const Admin = ({ match }) => {
 			<Route path={`${match.path}/product-supplier-schemes/:itemID?`} component={AdminSupplierScheme} />
 			<Route path={`${match.path}/batch-master/:itemID?`} component={AdminBatch} />
 			<Route path={`${match.path}/product-location/:itemID?`} component={AdminProductLocation} />
+			<Redirect to={`${match.path}/product`}/>
 		</Switch>
 	);
 }
