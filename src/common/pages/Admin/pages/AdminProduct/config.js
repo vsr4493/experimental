@@ -89,6 +89,7 @@ export const searchFields = [
 
 ];
 
+export const pageTitle = 'Product Master';
 export const itemSchema = {
 	"onemg_sku_id" : "Sku ID",
 	"sku_name" : "Sku Name",
