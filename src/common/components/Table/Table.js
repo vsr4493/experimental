@@ -21,6 +21,7 @@ import EnhancedToolbar from "./EnhancedToolbar";
 import { lighten } from "@material-ui/core/styles/colorManipulator";
 import { dateFormatter } from "common/utility/formatters";
 import get from "lodash/get";
+import pickBy from "lodash/pickBy";
 import SearchBar from "./SearchBar";
 import Button from "@material-ui/core/Button";
 import EditIcon from "@material-ui/icons/Edit";
@@ -157,8 +158,10 @@ class EnhancedTable extends React.Component {
   performSearch = () => {
     const { order, orderBy, page, rowsPerPage, search } = this.state;
 
+    const searchParams = pickBy(search, (v, k) => v && v !== '');
+
     this.props
-      .getData({ order, orderBy: orderBy.id, page: 1, rowsPerPage, search })
+      .getData({ order, orderBy: orderBy.id, page: 1, rowsPerPage, search: searchParams })
       .then(data => {
         this.setState(() => ({ page: 0 }));
       });
