@@ -80,6 +80,7 @@ export const searchFields = [
 	}
 ];
 
+export const pageTitle = 'Location Master';
 export const itemSchema = {
 	'vendor.name': "Warehouse",
 	'rack': "Rack",

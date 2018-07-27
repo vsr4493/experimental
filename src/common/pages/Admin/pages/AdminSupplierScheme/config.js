@@ -79,3 +79,5 @@ export const itemSchema = {
 	'name': "Supplier Name",
 	'status': "Supplier Status",
 };
+
+export const pageTitle = 'Supplier Scheme Master';

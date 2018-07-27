@@ -41,4 +41,5 @@ export const columns = [
 	},
 ];
 
+export const pageTitle = 'Product Location Master';
 export const searchFields = [];

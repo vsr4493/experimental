@@ -46,3 +46,5 @@ export const searchFields = [
 export const itemSchema = {
 	'supplier_sku_id': "Supplier Sku ID",
 };
+
+export const pageTitle = 'Product Supplier Master';
