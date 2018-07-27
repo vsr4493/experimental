@@ -11,7 +11,7 @@ const filterUndefined = data => {
 const transformRequest = (payload) => {
 };
 
-const request = (payload) => {
+export const request = (payload) => {
   return axios.request(payload);
 }
 
@@ -21,11 +21,11 @@ const withQueryString = (baseURL, data) => {
 }
 
 export const fetchDataList = ({
-	order,
-	orderBy,
-	page,
-	rowsPerPage,
-	apiConfiguration,
+  order,
+  orderBy,
+  page,
+  rowsPerPage,
+  apiConfiguration,
   search,
 }) => {
   const data = {
@@ -34,15 +34,15 @@ export const fetchDataList = ({
     ...search,
     ...apiConfiguration.data
   };
-  if(typeof orderBy !== 'undefined') {
+  if (typeof orderBy !== 'undefined') {
     Object.assign(data, {
-      sort_by: `${orderBy}:${order}`,  
+      sort_by: `${orderBy}:${order}`,
     });
   }
-    
+
   const payload = {
-  	url: withQueryString(apiConfiguration.url, data),
-  	method: apiConfiguration.method,
+    url: withQueryString(apiConfiguration.url, data),
+    method: apiConfiguration.method,
   };
   payload.headers = {};
   return request(payload);
@@ -59,7 +59,7 @@ export const updateItem = ({ updated, apiConfiguration }) => {
   return request(payload);
 };
 
-export const login = ({email, password}) => {
+export const login = ({ email, password }) => {
   const payload = {
     url: '/api/login',
     method: 'post',
