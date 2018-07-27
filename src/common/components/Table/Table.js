@@ -25,7 +25,7 @@ import get from "lodash/get";
 import SearchBar from "./SearchBar";
 import Button from "@material-ui/core/Button";
 import Build from "@material-ui/icons/Build";
-import Details from "@material-ui/icons/Details";
+import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { Link } from 'react-router-dom';
 
 const styles = theme => ({
@@ -244,7 +244,7 @@ class EnhancedTable extends React.Component {
                             mini
                             color="primary"
                           >
-                            <Details />
+                            <KeyboardArrowRight />
                           </Button>
                         </Link>
                       </TableCellIcon>
