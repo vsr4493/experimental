@@ -79,3 +79,10 @@ export const searchFields = [
 		id: "bin"
 	}
 ];
+
+export const itemSchema = {
+	'vendor.name': "Warehouse",
+	'rack': "Rack",
+	'slab': "Slab",
+	'bin': "Bin",
+};

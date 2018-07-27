@@ -24,8 +24,10 @@ const CONFIGURATION = {
 // Add any options here if needed
 const mapStateToProps = ({ dataList }, ownProps) => ({
 	data: selectors.getDataList(dataList),
+  baseData: dataList.data,
   meta: dataList.meta,
   config,
+  ...ownProps,
 });
 
 const mapDispatchToProps = (dispatch, {}) => ({

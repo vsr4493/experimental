@@ -4,6 +4,7 @@ import EnhancedTable from "components/Table";
 import { dateFormatter } from "common/utility/formatters";
 import { withTheme, MuiThemeProvider, createMuiTheme  } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
+import DetailedView from 'components/DetailedView';
 import Form from 'components/Form';
 
 const theme = createMuiTheme({
@@ -21,6 +22,7 @@ export class Base extends Component {
 		super();
 		this.toggleEditForm = this.toggleEditForm.bind(this);
 		this.updateItem = this.updateItem.bind(this);
+		this.getDetailsRoute = this.getDetailsRoute.bind(this);
 		this.state = {
 			showEditForm: false,
 			form: null
@@ -34,6 +36,13 @@ export class Base extends Component {
 			showEditForm,
 			form: showEditForm ? activeItem : null
 		});
+	}
+
+	getDetailsRoute(activeItem) {
+		const {
+			match,
+		} = this.props;
+		return `${match.url}/${activeItem.id}`;
 	}
 
 	updateItem({ formData }) {
@@ -64,7 +73,20 @@ export class Base extends Component {
 	}
 
 	render() {
-		const { getData, data, meta, options, config } = this.props;
+		const { getData, data, baseData, meta, options, config, match } = this.props;
+		if(
+			data.length > 0 &&
+			match.params && 
+			match.params.itemID && 
+			match.params.itemID.length > 0
+		) {
+			return (
+				<DetailedView 
+					data={baseData[match.params.itemID]}
+					config={config.itemSchema}
+				/>
+			);
+		}
 		return (
 			<div>
 				{this.renderFormModal()}
@@ -79,7 +101,8 @@ export class Base extends Component {
 					}}
 					columns={config.columns}
 					searchFields={config.searchFields}
-					onEdit={this.toggleEditForm}
+					showEditor={this.toggleEditForm}
+					getDetailsRoute={this.getDetailsRoute}
 				/>
 			</div>
 		);
