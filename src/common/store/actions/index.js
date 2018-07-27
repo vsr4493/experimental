@@ -63,6 +63,23 @@ export const updateItem = payload => (dispatch, getState, { request }) => {
 		});
 };
 
+export const fetchItemData = payload => (dispatch, getState, { request }) => {
+	dispatch(updateDataList({
+		isFetchComplete: false,
+	}));
+	return request
+		.fetchItemData(payload)
+		.then(({data}) => {
+			if(!data.is_success) {
+				throw data;
+			}
+			return data.data;
+		})
+		.catch(err => {
+			console.log(err);
+		});
+}
+
 export const login = payload => (dispatch, getState, { request }) => {
 	return request
 		.login(payload)

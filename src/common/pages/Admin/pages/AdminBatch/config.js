@@ -21,4 +21,6 @@ export const columns = [
 	},
 ];
 
+export const pageTitle = 'Batch Master';
+
 export const searchFields = [];
