@@ -47,7 +47,10 @@ const styles = theme => ({
   firstCell: {
     fontSize: "12px",
     padding: "10px"
-  }
+  },
+  iconCell: {
+    paddingRight: '0px'
+  },
 });
 
 const TableCellIcon = styled(TableCell)`
@@ -230,7 +233,7 @@ class EnhancedTable extends React.Component {
                         </TableCell>
                       ))}
                       {typeof this.props.showEditor !== "undefined" && (
-                        <TableCellIcon>
+                        <TableCellIcon className={classes.iconCell}>
                           <IconButton
                             color="secondary"
                             onClick={() => this.props.showEditor({ activeItem: item })}
@@ -240,7 +243,7 @@ class EnhancedTable extends React.Component {
                         </TableCellIcon>
                       )}
                       {typeof this.props.getDetailsRoute !== "undefined" &&
-                        <TableCellIcon>
+                        <TableCellIcon className={classes.iconCell}>
                           <Link style={{ textDecoration: 'none' }} to={this.props.getDetailsRoute(item)}>
                             <IconButton
                               color="primary"
