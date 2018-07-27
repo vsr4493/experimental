@@ -28,6 +28,10 @@ export const columns = [
 		label: 'Unit Of Measurement',
 	},
 	{
+		label: "Aisle",
+		id: "location.aisle"
+	},
+	{
 		label: "Rack",
 		id: "location.rack"
 	},
@@ -41,4 +45,10 @@ export const columns = [
 	},
 ];
 
-export const searchFields = [];
+export const pageTitle = 'Product Location Master';
+export const searchFields = [
+	{
+		id: "sku_name",
+		label: "Sku Name"
+	},
+];

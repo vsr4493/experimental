@@ -6,9 +6,11 @@ import * as config from './config';
 
 const CONFIGURATION = {
   FETCH_DATA: {
-    url: '/api/schemes',
+    url: '/api/vendor_supplier_schemes',
     method: 'GET',
-    data: {}
+    data: {
+      include: "sku,scheme,supplier"
+    }
   },
   UPDATE_ITEM: (payload) => ({
     url: `/api/schemes/${payload.id}`,

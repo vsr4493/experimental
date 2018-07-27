@@ -63,23 +63,24 @@ export const columns = [
 
 export const searchFields = [
 	{
-		id: "aisle",
+		id: "aisle_filter",
 		label: "Aisle"
 	},
 	{
 		label: "Rack",
-		id: "rack"
+		id: "rack_filter"
 	},
 	{
 		label: "Slab",
-		id: "slab"
+		id: "slab_filter"
 	},
 	{
 		label: "Bin",
-		id: "bin"
+		id: "bin_filter"
 	}
 ];
 
+export const pageTitle = 'Location Master';
 export const itemSchema = {
 	'vendor.name': "Warehouse",
 	'rack': "Rack",

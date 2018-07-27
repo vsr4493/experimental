@@ -31,20 +31,12 @@ export const uiSchema = {
 
 export const columns = [
 	{
-		id: "status",
-		label: "Status"
-	},
-	{
-		id: "schemable_type",
-		label: "Scheme Type"
-	},
-	{
 		id: "name",
-		label: "Name"
+		label: " Scheme Name"
 	},
 	{
 		id: "min_amount",
-		label: "Minimum Amount Percentage"
+		label: "Min Amount Percentage"
 	},
 	{
 		id: "discount_units",
@@ -54,10 +46,10 @@ export const columns = [
 		id: "created_at",
 		label: "Created At"
 	},
-	{
-		id: "expires_at",
-		label: "Expires At"
-	},
+	// {
+	// 	id: "expires_at",
+	// 	label: "Expires At"
+	// },
 ];
 
 export const searchFields = [
@@ -79,3 +71,5 @@ export const itemSchema = {
 	'name': "Supplier Name",
 	'status': "Supplier Status",
 };
+
+export const pageTitle = 'Supplier Scheme Master';
