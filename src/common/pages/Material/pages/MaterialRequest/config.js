@@ -1,20 +1,20 @@
 export const schema = {
-	title: "Supplier Edit",
-	description: "Edit Supplier Details",
+	title: "Request Edit",
+	description: "Edit Material Requests",
 	type: "object",
-	required: ["name", "type"],
+	required: ["sales_order_id", "code", "status"],
 	properties: {
-		name: {
+		sales_order_id: {
 			type: "string",
-			title: "SKU",
+			title: "Sales ID",
 		},
-		uom: {
+		code: {
 			type: "string",
-			title: "UOM",
+			title: "Code",
 		},
-		quantity: {
+		status: {
 			type: "string",
-			title: "Quantity",
+			title: "Status",
 		},
 	}
 };
@@ -32,7 +32,7 @@ export const uiSchema = {
 export const columns = [
 	{
 		id: "sales_order_id",
-		label: "Sales #"
+		label: "Sales ID"
 	},
 	{
 		id: "code",
@@ -47,8 +47,8 @@ export const columns = [
 		label: "Delivery Date"
 	},
 	{
-		id: "created_on",
-		label: "Created On",
+		id: "created_at",
+		label: "Created",
 	},
 	{
 		id: "type",
