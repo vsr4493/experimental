@@ -15,14 +15,33 @@ const jss = create(jssPreset());
 // We define a custom insertion point that JSS will look for injecting the styles in the DOM.
 jss.options.insertionPoint = 'jss-insertion-point';
 
+const isLoggedIn = () => {
+	if(typeof(window) !== 'undefined') {
+		return !!window.document.cookie.match(/authToken=(.+)/);
+	} else {
+		return false;
+	}
+}
+
 const App = () => (
 	<div>
-		<NavBar />
+		{isLoggedIn() &&
+			<NavBar />
+		}
 		<JssProvider jss={jss} generateClassName={generateClassName}>
 			<Switch>
-			  <Route path="/administration" component={Admin} />
-				<Route path="/login" component={Login} />
-				<Redirect to="/administration" />
+				{isLoggedIn() &&
+				  <Route path="/administration" component={Admin} />
+				}
+				{!isLoggedIn() &&
+					<Route path="/login" component={Login} />
+				}
+				{isLoggedIn() &&
+					<Redirect to="/administration" />
+				}
+				{!isLoggedIn() &&
+					<Redirect to="/login" />
+				}
 			</Switch>
 		</JssProvider>
 	</div>

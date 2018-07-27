@@ -83,7 +83,7 @@ class EnhancedTable extends React.Component {
     const rowsPerPage = this.state.rowsPerPage;
     this.setState({ order, orderBy }, () => {
       this.props
-        .getData({ order, orderBy, page, rowsPerPage })
+        .getData({ order, orderBy, page: page + 1, rowsPerPage })
         .then(data => this.setState(() => ({ page: 0 })));
     });
   };
@@ -120,7 +120,7 @@ class EnhancedTable extends React.Component {
   handleChangePage = (event, page) => {
     const { order, orderBy, rowsPerPage } = this.state;
     this.props
-      .getData({ order, orderBy: orderBy.id, page, rowsPerPage })
+      .getData({ order, orderBy: orderBy.id, page: page + 1, rowsPerPage })
       .then(data => this.setState(() => ({ page })));
   };
 
@@ -128,7 +128,7 @@ class EnhancedTable extends React.Component {
     const { order, orderBy, page } = this.state;
     const rowsPerPage = event.target.value;
     this.props
-      .getData({ order, orderBy: orderBy.id, page, rowsPerPage })
+      .getData({ order, orderBy: orderBy.id, page: page + 1, rowsPerPage })
       .then(data => this.setState(() => ({ rowsPerPage })));
   };
 
@@ -144,7 +144,7 @@ class EnhancedTable extends React.Component {
     const { order, orderBy, page, rowsPerPage, search } = this.state;
 
     this.props
-      .getData({ order, orderBy: orderBy.id, page: 0, rowsPerPage, search })
+      .getData({ order, orderBy: orderBy.id, page: 1, rowsPerPage, search })
       .then(data => {
         this.setState(() => ({ page: 0 }));
       });
@@ -157,7 +157,8 @@ class EnhancedTable extends React.Component {
       fieldFormatters,
       tableTitle,
       searchFields,
-      data
+      data,
+      meta
     } = this.props;
     if (!data || data.length === 0) {
       return <div>Loading..</div>;
@@ -189,7 +190,6 @@ class EnhancedTable extends React.Component {
             />
             <TableBody>
               {data
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(item => {
                   const isSelected = this.isSelected(item.id);
                   return (
@@ -235,7 +235,7 @@ class EnhancedTable extends React.Component {
           </Table>
         </div>
         <TablePagination
-          count={data.length}
+          count={meta.total_count}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{

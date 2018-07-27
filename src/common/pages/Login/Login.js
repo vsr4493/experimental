@@ -63,7 +63,7 @@ class Login extends React.Component {
 
   sendDetails(){
     // pass these two to a function for auth
-    this.props.submitLogin(this.state.emailValue, this.state.passwordValue);
+    this.props.login(this.state.emailValue, this.state.passwordValue);
   }
 
   render(){
@@ -73,10 +73,17 @@ class Login extends React.Component {
     return (
       <div>
         <Grid container justify={justify} alignItems={alignItems} direction="row">
+          <Grid item xs={12}>
+          <Typography variant="display4" gutterBottom>
+            THANOS
+          </Typography>
+          </Grid>
+        </Grid>
+        <Grid container justify={justify} alignItems={alignItems} direction="row">
           <Card className={classes.card}>
             <CardMedia
               className={classes.cover}
-              image="/images/odin-login.jpg"
+              image="/images/thanos.jpg"
               title="Live from space album cover"
             />
             <div className={classes.details}>

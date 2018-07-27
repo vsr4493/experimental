@@ -64,13 +64,14 @@ export class Base extends Component {
 	}
 
 	render() {
-		const { getData, data, options, config } = this.props;
+		const { getData, data, meta, options, config } = this.props;
 		return (
 			<div>
 				{this.renderFormModal()}
 				<EnhancedTable
 					getData={getData}
 					data={data}
+					meta={meta}
 					tableTitle={config.pageTitle}
 					fieldFormatters={{
 						created_at: dateFormatter,
