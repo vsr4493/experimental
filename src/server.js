@@ -17,6 +17,7 @@ server
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/*', (req, res) => {
     const context = {};
+  /*  
     const sheet = new ServerStyleSheet()
     const markup = renderToString(
       sheet.collectStyles(
@@ -28,7 +29,7 @@ server
       )
     );
     const styleTags = sheet.getStyleTags()
-
+*/
 
     if (context.url) {
       res.redirect(context.url);
@@ -50,21 +51,15 @@ server
             padding: 0;
           }
         </style>
-        ${styleTags}
-        ${
-          assets.client.css
-            ? `<link rel="stylesheet" href="${assets.client.css}">`
-            : ''
-        }
+        <!-- jss-insertion-point -->
         ${
           process.env.NODE_ENV === 'production'
             ? `<script src="${assets.client.js}" defer></script>`
             : `<script src="${assets.client.js}" defer crossorigin></script>`
         }
-        <!-- jss-insertion-point -->
     </head>
     <body style="margin: 0px;">
-        <div id="root">${markup}</div>
+        <div id="root"></div>
     </body>
 </html>`
       );

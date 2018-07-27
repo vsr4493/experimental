@@ -41,7 +41,6 @@ export default (server) => {
 			Object.assign(proxyReqOpts.headers, {
 				'Authorization': token,
 			});
-			console.log(proxyReqOpts);
 	    return proxyReqOpts;
 	  },
 	}));
