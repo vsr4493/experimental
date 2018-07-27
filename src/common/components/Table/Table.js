@@ -179,6 +179,7 @@ class EnhancedTable extends React.Component {
         <EnhancedToolbar
           numSelected={selected.length}
           tableTitle={tableTitle}
+          classes={classes.toolbar}
         />
         <SearchBar
           searchFields={searchFields}
