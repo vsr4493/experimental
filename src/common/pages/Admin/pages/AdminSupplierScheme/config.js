@@ -31,15 +31,23 @@ export const uiSchema = {
 
 export const columns = [
 	{
-		id: "name",
+		id: "scheme.name",
 		label: " Scheme Name"
 	},
 	{
-		id: "min_amount",
+		id: "supplier.name",
+		label: " Supplier Name"
+	},
+	{
+		id: "sku.sku_name",
+		label: " Sku Name"
+	},
+	{
+		id: "scheme.min_amount",
 		label: "Min Amount Percentage"
 	},
 	{
-		id: "discount_units",
+		id: "scheme.discount_units",
 		label: "Discount Percentage"
 	},
 	{
@@ -54,17 +62,18 @@ export const columns = [
 
 export const searchFields = [
 	{
-		id: "name",
+		id: "scheme_name",
+		label: "Scheme Name"
+	},
+	{
+		id: "supplier_name",
 		label: "Supplier Name"
 	},
 	{
-		id: "status",
-		label: "Status"
+		id: "sku_name",
+		label: "Sku Name"
 	},
-	{
-		id: "schemable_type",
-		label: "Scheme Type"
-	},
+
 ];
 
 export const itemSchema = {
