@@ -63,20 +63,20 @@ export const columns = [
 
 export const searchFields = [
 	{
-		id: "aisle_filter",
+		id: "aisle",
 		label: "Aisle"
 	},
 	{
 		label: "Rack",
-		id: "rack_filter"
+		id: "rack"
 	},
 	{
 		label: "Slab",
-		id: "slab_filter"
+		id: "slab"
 	},
 	{
 		label: "Bin",
-		id: "bin_filter"
+		id: "bin"
 	}
 ];
 
